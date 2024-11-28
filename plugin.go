@@ -82,7 +82,7 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 					buf.WriteString("# ")
 					buf.WriteString(method.Name)
 					buf.WriteString("\n\n")
-					buf.WriteString("### 简要描述\n\n")
+					buf.WriteString("### Feature Introduction\n\n")
 					buf.WriteString("- ")
 					buf.WriteString(string(method.Description))
 					buf.WriteString("\n\n")

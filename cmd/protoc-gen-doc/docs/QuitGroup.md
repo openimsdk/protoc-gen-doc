@@ -1,6 +1,6 @@
 # QuitGroup
 
-### 简要描述
+### Feature Introduction
 
 - This is a leading comment for a message<br>This is a leading comment for a message<br>This is a leading comment for a message<br>This is a leading comment for a message
 

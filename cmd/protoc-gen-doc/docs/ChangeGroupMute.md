@@ -1,6 +1,6 @@
 # ChangeGroupMute
 
-### 简要描述
+### Feature Introduction
 
 - mute or cancel mute a group
 

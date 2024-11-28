@@ -1,6 +1,6 @@
 # GetUsersInGroup
 
-### 简要描述
+### Feature Introduction
 
 - get users in group
 

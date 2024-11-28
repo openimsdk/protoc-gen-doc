@@ -1,6 +1,6 @@
 # KickGroupMember
 
-### 简要描述
+### Feature Introduction
 
 - kick a group member
 

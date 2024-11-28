@@ -1,6 +1,6 @@
 # SetGroupMemberInfo
 
-### 简要描述
+### Feature Introduction
 
 - set group member information
 

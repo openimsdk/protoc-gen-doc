@@ -1,6 +1,6 @@
 # InviteUserToGroup
 
-### 简要描述
+### Feature Introduction
 
 - invite user to group
 

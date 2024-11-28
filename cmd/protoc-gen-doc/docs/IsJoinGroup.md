@@ -1,6 +1,6 @@
 # IsJoinGroup
 
-### 简要描述
+### Feature Introduction
 
 - is join group
 

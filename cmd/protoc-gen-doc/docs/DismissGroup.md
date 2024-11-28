@@ -1,6 +1,6 @@
 # DismissGroup
 
-### 简要描述
+### Feature Introduction
 
 - dismiss a group
 
