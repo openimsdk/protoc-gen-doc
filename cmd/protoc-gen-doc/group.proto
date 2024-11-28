@@ -1,0 +1,118 @@
+// <h1> Group1 </h1>
+syntax = "proto3";
+package openim.sdk.group;
+option csharp_namespace = "OpenIM";
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/group";
+
+
+message QuitGroupReq {
+  string groupID = 1;// group id you quit
+}
+message QuitGroupResp {}
+
+message DismissGroupReq {
+  string groupID = 1;// group id you dismissed
+}
+message DismissGroupResp {}
+
+message ChangeGroupMuteReq {
+  string groupID = 1;// group id you want to mute
+  bool mute = 2;// mute or cancel mute
+}
+message ChangeGroupMuteResp {}
+
+message ChangeGroupMemberMuteReq {
+  string groupID = 1;// group id you want to mute
+  string userID = 2;// user id you want to mute
+  uint32 mutedSeconds = 3;// mute time (unit: seconds), 0 cancels the mute
+}
+message ChangeGroupMemberMuteResp {}
+
+message TransferGroupOwnerReq {
+  string groupID = 1;// group id you want to transfer
+  string ownerUserID = 2;// new owner user id
+}
+message TransferGroupOwnerResp {}
+
+message KickGroupMemberReq {
+  string groupID = 1;// group id you want to kick
+  repeated string kickedUserIDs = 2;// user id you want to kick
+  string reason = 3;// kick reason
+}
+message KickGroupMemberResp {}
+
+message SetGroupInfoReq {
+  string groupID = 1;// group id you want to set
+  optional string groupName = 2;// group name
+  optional string notification = 3;// group notification
+  optional string introduction = 4;// group introduction
+  optional string faceURL = 5;// group face url
+  optional string ex = 6;// extension field
+  optional int32 needVerification = 7;// whether to verify the group
+  optional int32 lookMemberInfo = 8;// whether to view the group member information
+  optional int32 applyMemberFriend = 9;// whether to allow group members to add friends
+}
+message SetGroupInfoResp {}
+
+message SetGroupMemberInfoReq {
+  string groupID = 1;// group id you want to set
+  string userID = 2;// user id you want to set
+  optional string nickname = 3;// user nickname
+  optional string faceURL = 4;// user face url
+  optional int32 roleLevel = 5;// user role level
+  optional string ex = 6;// extension field
+}
+message SetGroupMemberInfoResp {}
+
+message IsJoinGroupReq {
+  string groupID = 1;// group id you want to check
+  string userID = 2;// user id you want to check
+}
+message IsJoinGroupResp {
+  bool joined = 1;// whether to join the group
+}
+
+message GetUsersInGroupReq {
+  string groupID = 1;// group id you want to get
+  repeated string userIDs = 2;// user id you want to get
+}
+message GetUsersInGroupResp {
+  repeated string userIDs = 1;// user id in the group
+}
+
+message InviteUserToGroupReq {
+  string groupID = 1;// group id you want to invite
+  repeated string userIDs = 2;// user id you want to invite
+  string reason = 3;// invite reason
+}
+message InviteUserToGroupResp {}
+
+service Group {
+  /**
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  */
+  rpc QuitGroup(QuitGroupReq) returns (QuitGroupResp);
+  // dismiss a group
+  rpc DismissGroup(DismissGroupReq) returns (DismissGroupResp);
+  // mute or cancel mute a group
+  rpc ChangeGroupMute(ChangeGroupMuteReq) returns (ChangeGroupMuteResp);
+  // mute or cancel mute a group member
+  rpc ChangeGroupMemberMute(ChangeGroupMemberMuteReq) returns (ChangeGroupMemberMuteResp);
+  // transfer group owner
+  rpc TransferGroupOwner(TransferGroupOwnerReq) returns (TransferGroupOwnerResp);
+  // kick a group member
+  rpc KickGroupMember(KickGroupMemberReq) returns (KickGroupMemberResp);
+  // set group information
+  rpc SetGroupInfo(SetGroupInfoReq) returns (SetGroupInfoResp);
+  // set group member information
+  rpc SetGroupMemberInfo(SetGroupMemberInfoReq) returns (SetGroupMemberInfoResp);
+  // is join group
+  rpc IsJoinGroup(IsJoinGroupReq) returns (IsJoinGroupResp);
+  // get users in group
+  rpc GetUsersInGroup(GetUsersInGroupReq) returns (GetUsersInGroupResp);
+  // invite user to group
+  rpc InviteUserToGroup(InviteUserToGroupReq) returns (InviteUserToGroupResp);
+}

@@ -1,6 +1,7 @@
 package gendoc
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"path"
@@ -49,26 +50,106 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 
 		customTemplate = string(data)
 	}
-
+	_ = customTemplate
 	resp := new(plugin_go.CodeGeneratorResponse)
 	fdsGroup := groupProtosByDirectory(result, options.SourceRelative)
+	var buf bytes.Buffer
 	for dir, fds := range fdsGroup {
 		template := NewTemplate(fds)
-
-		output, err := RenderTemplate(options.Type, template, customTemplate)
-		if err != nil {
-			return nil, err
+		// todo 生成文件
+		//log.Println("===>", dir, template.Files[0].Name, template.Files[0].Package, template.Files[0].Description)
+		//for i, file := range template.Files {
+		//	log.Printf("[%d]===> %+v\n", i+1, file.Services[0])
+		//	for j, service := range file.Services {
+		//		log.Printf("    [%d]===> %+v\n", j+1, service)
+		//		for k, method := range service.Methods {
+		//			log.Printf("        [%d]===> %+v\n", k+1, method)
+		//		}
+		//	}
+		//}
+		msgData := make(map[string]*Message)
+		for _, file := range template.Files {
+			for _, message := range file.Messages {
+				msgData[message.FullName] = message
+			}
+		}
+		for _, file := range template.Files {
+			//pkgname := file.Package
+			//log.Printf("===> %s %s\n", pkgname, file.Description)
+			for _, service := range file.Services {
+				for _, method := range service.Methods {
+					buf.Reset()
+					buf.WriteString("# ")
+					buf.WriteString(method.Name)
+					buf.WriteString("\n\n")
+					buf.WriteString("### 简要描述\n\n")
+					buf.WriteString("- ")
+					buf.WriteString(string(method.Description))
+					buf.WriteString("\n\n")
+					buf.WriteString("| Method Name | Request Type | Response Type |\n")
+					buf.WriteString("| ----------- | ------------ | ------------- |\n")
+					buf.WriteString("| ")
+					buf.WriteString(method.Name)
+					buf.WriteString(" | ")
+					writeType(&buf, method.RequestType, method.RequestFullType)
+					buf.WriteString(" | ")
+					writeType(&buf, method.ResponseType, method.ResponseFullType)
+					buf.WriteString(" |\n\n")
+					buf.WriteString("### 请求参数\n")
+					writeMessage(&buf, msgData[method.RequestFullType])
+					buf.WriteString("\n\n")
+					buf.WriteString("### 响应参数\n")
+					writeMessage(&buf, msgData[method.ResponseFullType])
+					buf.WriteString("\n\n")
+					resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
+						Name:    proto.String(filepath.Join(dir, method.Name+".md")),
+						Content: proto.String(buf.String()),
+					})
+				}
+			}
 		}
 
-		resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
-			Name:    proto.String(filepath.Join(dir, options.OutputFile)),
-			Content: proto.String(string(output)),
-		})
+		//output, err := RenderTemplate(options.Type, template, customTemplate)
+		//if err != nil {
+		//	return nil, err
+		//}
+		//resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
+		//	Name:    proto.String(filepath.Join(dir, options.OutputFile)),
+		//	Content: proto.String(string(output)),
+		//})
 	}
 
 	resp.SupportedFeatures = proto.Uint64(SupportedFeatures)
 
 	return resp, nil
+}
+
+func writeType(buf *bytes.Buffer, name string, full string) {
+	buf.WriteString("[")
+	buf.WriteString(name)
+	buf.WriteString("](#")
+	buf.WriteString(full)
+	buf.WriteString(")")
+}
+
+func writeMessage(buf *bytes.Buffer, msg *Message) {
+	//| Field | Type | Label | Description |
+	//| ----- | ---- | ----- | ----------- |
+	//| groupID | [string](#string) |  | group id you want to transfer |
+	//| ownerUserID | [string](#string) |  | new owner user id |
+	buf.WriteString("| Field | Type | Label | Description |\n")
+	buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
+	for _, field := range msg.Fields {
+		buf.WriteString("| ")
+		buf.WriteString(field.Name)
+		buf.WriteString(" | ")
+		writeType(buf, field.Type, field.FullType)
+		buf.WriteString(" | ")
+		buf.WriteString(field.Label)
+		buf.WriteString(" | ")
+		buf.WriteString(string(field.Description))
+		buf.WriteString(" |\n")
+	}
 }
 
 func groupProtosByDirectory(fds []*protokit.FileDescriptor, sourceRelative bool) map[string][]*protokit.FileDescriptor {

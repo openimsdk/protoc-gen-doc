@@ -4,11 +4,11 @@
 //
 // Example: generate HTML documentation
 //
-//     protoc --doc_out=. --doc_opt=html,index.html protos/*.proto
+//	protoc --doc_out=. --doc_opt=html,index.html protos/*.proto
 //
 // Example: use a custom template
 //
-//     protoc --doc_out=. --doc_opt=custom.tmpl,docs.txt protos/*.proto
+//	protoc --doc_out=. --doc_opt=custom.tmpl,docs.txt protos/*.proto
 //
 // For more details, check out the README at https://github.com/pseudomuto/protoc-gen-doc
 package main
@@ -25,6 +25,11 @@ import (
 	_ "github.com/pseudomuto/protoc-gen-doc/extensions/validator_field" // imported for side effects
 )
 
+/*
+export PATH=$PATH:$(pwd)
+protoc --proto_path=. --doc_out=. --doc_opt=markdown,group.md group.proto
+go build; protoc --proto_path=. --doc_out=docs --doc_opt=markdown,group.md group.proto
+*/
 func main() {
 	if flags := ParseFlags(os.Stdout, os.Args); HandleFlags(flags) {
 		os.Exit(flags.Code())
