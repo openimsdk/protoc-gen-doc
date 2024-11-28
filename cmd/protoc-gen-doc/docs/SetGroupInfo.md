@@ -2,13 +2,15 @@
 
 ### Feature Introduction
 
-- set group information
+* set group information
 
-| Method Name | Request Type | Response Type |
-| ----------- | ------------ | ------------- |
-| SetGroupInfo | [SetGroupInfoReq](#openim.sdk.group.SetGroupInfoReq) | [SetGroupInfoResp](#openim.sdk.group.SetGroupInfoResp) |
 
-### SetGroupInfoReq
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| SetGroupInfo | [SetGroupInfoReq](#openim.sdk.group.SetGroupInfoReq) | [SetGroupInfoResp](#openim.sdk.group.SetGroupInfoResp) | set group information |
+ 
+
+#### SetGroupInfoReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to set |
@@ -20,9 +22,9 @@
 | needVerification | [int32](#int32) | optional | whether to verify the group |
 | lookMemberInfo | [int32](#int32) | optional | whether to view the group member information |
 | applyMemberFriend | [int32](#int32) | optional | whether to allow group members to add friends |
+ 
 
-
-### SetGroupInfoResp
+#### SetGroupInfoResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

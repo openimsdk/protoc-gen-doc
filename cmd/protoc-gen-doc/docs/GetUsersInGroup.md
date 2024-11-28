@@ -2,20 +2,22 @@
 
 ### Feature Introduction
 
-- get users in group
+* get users in group
 
-| Method Name | Request Type | Response Type |
-| ----------- | ------------ | ------------- |
-| GetUsersInGroup | [GetUsersInGroupReq](#openim.sdk.group.GetUsersInGroupReq) | [GetUsersInGroupResp](#openim.sdk.group.GetUsersInGroupResp) |
 
-### GetUsersInGroupReq
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetUsersInGroup | [GetUsersInGroupReq](#openim.sdk.group.GetUsersInGroupReq) | [GetUsersInGroupResp](#openim.sdk.group.GetUsersInGroupResp) | get users in group |
+ 
+
+#### GetUsersInGroupReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to get |
 | userIDs | [string](#string) | repeated | user id you want to get |
+ 
 
-
-### GetUsersInGroupResp
+#### GetUsersInGroupResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | userIDs | [string](#string) | repeated | user id in the group |

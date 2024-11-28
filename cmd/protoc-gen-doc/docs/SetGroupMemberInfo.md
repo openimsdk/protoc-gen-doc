@@ -2,13 +2,15 @@
 
 ### Feature Introduction
 
-- set group member information
+* set group member information
 
-| Method Name | Request Type | Response Type |
-| ----------- | ------------ | ------------- |
-| SetGroupMemberInfo | [SetGroupMemberInfoReq](#openim.sdk.group.SetGroupMemberInfoReq) | [SetGroupMemberInfoResp](#openim.sdk.group.SetGroupMemberInfoResp) |
 
-### SetGroupMemberInfoReq
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| SetGroupMemberInfo | [SetGroupMemberInfoReq](#openim.sdk.group.SetGroupMemberInfoReq) | [SetGroupMemberInfoResp](#openim.sdk.group.SetGroupMemberInfoResp) | set group member information |
+ 
+
+#### SetGroupMemberInfoReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to set |
@@ -17,9 +19,9 @@
 | faceURL | [string](#string) | optional | user face url |
 | roleLevel | [int32](#int32) | optional | user role level |
 | ex | [string](#string) | optional | extension field |
+ 
 
-
-### SetGroupMemberInfoResp
+#### SetGroupMemberInfoResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

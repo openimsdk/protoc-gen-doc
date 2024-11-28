@@ -74,37 +74,25 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 			}
 		}
 		for _, file := range template.Files {
-			//pkgname := file.Package
-			//log.Printf("===> %s %s\n", pkgname, file.Description)
 			for _, service := range file.Services {
 				for _, method := range service.Methods {
+					simple, desc := splitDescription(string(method.Description))
 					buf.Reset()
 					buf.WriteString("# ")
 					buf.WriteString(method.Name)
 					buf.WriteString("\n\n")
 					buf.WriteString("### Feature Introduction\n\n")
-					buf.WriteString("- ")
-					buf.WriteString(string(method.Description))
+					buf.WriteString(fmt.Sprintf("* %s\n", simple))
+					for _, d := range desc {
+						buf.WriteString(fmt.Sprintf("- %s\n", d))
+					}
 					buf.WriteString("\n\n")
-					buf.WriteString("| Method Name | Request Type | Response Type |\n")
-					buf.WriteString("| ----------- | ------------ | ------------- |\n")
-					buf.WriteString("| ")
-					buf.WriteString(method.Name)
-					buf.WriteString(" | ")
-					writeType(&buf, method.RequestType, method.RequestFullType)
-					buf.WriteString(" | ")
-					writeType(&buf, method.ResponseType, method.ResponseFullType)
-					buf.WriteString(" |\n\n")
-					//buf.WriteString("### 请求参数\n")
-					buf.WriteString("### ")
-					buf.WriteString(method.RequestType)
-					buf.WriteString("\n")
+					writeMethod(&buf, method)
+					buf.WriteString(" \n\n")
+					buf.WriteString(fmt.Sprintf("#### %s\n", method.RequestType))
 					writeMessage(&buf, msgData[method.RequestFullType])
-					buf.WriteString("\n\n")
-					//buf.WriteString("### 响应参数\n")
-					buf.WriteString("### ")
-					buf.WriteString(method.ResponseType)
-					buf.WriteString("\n")
+					buf.WriteString(" \n\n")
+					buf.WriteString(fmt.Sprintf("#### %s\n", method.ResponseType))
 					writeMessage(&buf, msgData[method.ResponseFullType])
 					buf.WriteString("\n\n")
 					resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
@@ -113,48 +101,50 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 					})
 				}
 			}
+			buf.Reset()
+			buf.WriteString(fmt.Sprintf("# %s\n\n", file.Name))
+			for _, service := range file.Services {
+				writeMethod(&buf, service.Methods...)
+			}
+			buf.WriteString("\n\n")
+			for _, message := range file.Messages {
+				buf.WriteString(fmt.Sprintf(`<a name="%s"></a>`, message.Name))
+				buf.WriteString(fmt.Sprintf("\n### %s\n\n", message.Name))
+				writeMessage(&buf, message)
+				buf.WriteString("\n\n")
+			}
+			resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
+				Name:    proto.String("index.md"),
+				Content: proto.String(buf.String()),
+			})
 		}
-
-		//output, err := RenderTemplate(options.Type, template, customTemplate)
-		//if err != nil {
-		//	return nil, err
-		//}
-		//resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
-		//	Name:    proto.String(filepath.Join(dir, options.OutputFile)),
-		//	Content: proto.String(string(output)),
-		//})
 	}
-
 	resp.SupportedFeatures = proto.Uint64(SupportedFeatures)
-
 	return resp, nil
 }
 
-func writeType(buf *bytes.Buffer, name string, full string) {
-	buf.WriteString("[")
-	buf.WriteString(name)
-	buf.WriteString("](#")
-	buf.WriteString(full)
-	buf.WriteString(")")
+func splitDescription(desc string) (string, []string) {
+	res := strings.Split(desc, "\n")
+	if len(res) == 0 {
+		return "", nil
+	}
+	return res[0], res[1:]
 }
 
 func writeMessage(buf *bytes.Buffer, msg *Message) {
-	//| Field | Type | Label | Description |
-	//| ----- | ---- | ----- | ----------- |
-	//| groupID | [string](#string) |  | group id you want to transfer |
-	//| ownerUserID | [string](#string) |  | new owner user id |
 	buf.WriteString("| Field | Type | Label | Description |\n")
 	buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
 	for _, field := range msg.Fields {
-		buf.WriteString("| ")
-		buf.WriteString(field.Name)
-		buf.WriteString(" | ")
-		writeType(buf, field.Type, field.FullType)
-		buf.WriteString(" | ")
-		buf.WriteString(field.Label)
-		buf.WriteString(" | ")
-		buf.WriteString(string(field.Description))
-		buf.WriteString(" |\n")
+		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | %s | %s |\n", field.Name, field.Type, field.FullType, field.Label, field.Description))
+	}
+}
+
+func writeMethod(buf *bytes.Buffer, methods ...*ServiceMethod) {
+	buf.WriteString("| Method Name | Request Type | Response Type | Description |\n")
+	buf.WriteString("| ----------- | ------------ | ------------- | ------------- |\n")
+	for _, method := range methods {
+		simple, _ := splitDescription(string(method.Description))
+		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | [%s](#%s) | %s |\n", method.Name, method.RequestType, method.RequestFullType, method.ResponseType, method.ResponseFullType, simple))
 	}
 }
 

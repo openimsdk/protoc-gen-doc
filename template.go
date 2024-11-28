@@ -573,7 +573,7 @@ func description(comment string) template.HTML {
 		return ""
 	}
 	val = strings.ReplaceAll(val, "\r", "")
-	val = strings.ReplaceAll(val, "\n", "<br>")
+	//val = strings.ReplaceAll(val, "\n", "<br>")
 	return template.HTML(val)
 }
 

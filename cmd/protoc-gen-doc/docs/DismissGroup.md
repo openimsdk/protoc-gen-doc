@@ -2,19 +2,21 @@
 
 ### Feature Introduction
 
-- dismiss a group
+* dismiss a group
 
-| Method Name | Request Type | Response Type |
-| ----------- | ------------ | ------------- |
-| DismissGroup | [DismissGroupReq](#openim.sdk.group.DismissGroupReq) | [DismissGroupResp](#openim.sdk.group.DismissGroupResp) |
 
-### DismissGroupReq
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| DismissGroup | [DismissGroupReq](#openim.sdk.group.DismissGroupReq) | [DismissGroupResp](#openim.sdk.group.DismissGroupResp) | dismiss a group |
+ 
+
+#### DismissGroupReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you dismissed |
+ 
 
-
-### DismissGroupResp
+#### DismissGroupResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 
