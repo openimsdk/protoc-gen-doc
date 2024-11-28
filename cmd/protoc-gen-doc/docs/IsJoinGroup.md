@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* is join group
 
 
 | Method Name | Request Type | Response Type | Description |

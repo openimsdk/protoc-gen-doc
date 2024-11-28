@@ -76,13 +76,13 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 		for _, file := range template.Files {
 			for _, service := range file.Services {
 				for _, method := range service.Methods {
-					simple, desc := splitDescription(string(method.Description))
+					_, desc := splitDescription(string(method.Description))
 					buf.Reset()
 					buf.WriteString("# ")
 					buf.WriteString(method.Name)
 					buf.WriteString("\n\n")
 					buf.WriteString("### Feature Introduction\n\n")
-					buf.WriteString(fmt.Sprintf("* %s\n", simple))
+					//buf.WriteString(fmt.Sprintf("* %s\n", simple))
 					for _, d := range desc {
 						buf.WriteString(fmt.Sprintf("- %s\n", d))
 					}

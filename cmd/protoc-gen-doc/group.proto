@@ -81,18 +81,20 @@ message GetUsersInGroupResp {
 }
 
 message InviteUserToGroupReq {
-  string groupID = 1;// group id you want to invite
-  repeated string userIDs = 2;// user id you want to invite
+  // group id you want to invite
+  string groupID = 1;
+  // user id you want to invite
+  repeated string userIDs = 2;
   string reason = 3;// invite reason
 }
 message InviteUserToGroupResp {}
 
 service Group {
   /**
-  * This is a leading comment for a message
-  * This is a leading comment for a message
-  * This is a leading comment for a message
-  * This is a leading comment for a message
+  * 1This is a leading comment for a message
+  * 2This is a leading comment for a message
+  * 3This is a leading comment for a message
+  * 4This is a leading comment for a message
   */
   rpc QuitGroup(QuitGroupReq) returns (QuitGroupResp);
   // dismiss a group

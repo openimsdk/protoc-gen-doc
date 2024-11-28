@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* dismiss a group
 
 
 | Method Name | Request Type | Response Type | Description |

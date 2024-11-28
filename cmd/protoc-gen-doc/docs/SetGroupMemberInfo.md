@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* set group member information
 
 
 | Method Name | Request Type | Response Type | Description |

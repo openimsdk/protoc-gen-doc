@@ -2,15 +2,14 @@
 
 ### Feature Introduction
 
-* This is a leading comment for a message
-- This is a leading comment for a message
-- This is a leading comment for a message
-- This is a leading comment for a message
+- 2This is a leading comment for a message
+- 3This is a leading comment for a message
+- 4This is a leading comment for a message
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------- |
-| QuitGroup | [QuitGroupReq](#openim.sdk.group.QuitGroupReq) | [QuitGroupResp](#openim.sdk.group.QuitGroupResp) | This is a leading comment for a message |
+| QuitGroup | [QuitGroupReq](#openim.sdk.group.QuitGroupReq) | [QuitGroupResp](#openim.sdk.group.QuitGroupResp) | 1This is a leading comment for a message |
  
 
 #### QuitGroupReq

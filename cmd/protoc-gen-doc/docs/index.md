@@ -2,7 +2,7 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------- |
-| QuitGroup | [QuitGroupReq](#openim.sdk.group.QuitGroupReq) | [QuitGroupResp](#openim.sdk.group.QuitGroupResp) | This is a leading comment for a message |
+| QuitGroup | [QuitGroupReq](#openim.sdk.group.QuitGroupReq) | [QuitGroupResp](#openim.sdk.group.QuitGroupResp) | 1This is a leading comment for a message |
 | DismissGroup | [DismissGroupReq](#openim.sdk.group.DismissGroupReq) | [DismissGroupResp](#openim.sdk.group.DismissGroupResp) | dismiss a group |
 | ChangeGroupMute | [ChangeGroupMuteReq](#openim.sdk.group.ChangeGroupMuteReq) | [ChangeGroupMuteResp](#openim.sdk.group.ChangeGroupMuteResp) | mute or cancel mute a group |
 | ChangeGroupMemberMute | [ChangeGroupMemberMuteReq](#openim.sdk.group.ChangeGroupMemberMuteReq) | [ChangeGroupMemberMuteResp](#openim.sdk.group.ChangeGroupMemberMuteResp) | mute or cancel mute a group member |

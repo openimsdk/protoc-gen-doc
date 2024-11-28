@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* invite user to group
 
 
 | Method Name | Request Type | Response Type | Description |

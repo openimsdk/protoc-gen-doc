@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* get users in group
 
 
 | Method Name | Request Type | Response Type | Description |

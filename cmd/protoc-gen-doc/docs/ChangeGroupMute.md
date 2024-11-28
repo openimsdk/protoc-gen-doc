@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* mute or cancel mute a group
 
 
 | Method Name | Request Type | Response Type | Description |

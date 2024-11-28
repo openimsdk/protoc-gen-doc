@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* kick a group member
 
 
 | Method Name | Request Type | Response Type | Description |

@@ -2,7 +2,6 @@
 
 ### Feature Introduction
 
-* transfer group owner
 
 
 | Method Name | Request Type | Response Type | Description |
