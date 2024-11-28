@@ -8,7 +8,7 @@
 | ----------- | ------------ | ------------- |
 | InviteUserToGroup | [InviteUserToGroupReq](#openim.sdk.group.InviteUserToGroupReq) | [InviteUserToGroupResp](#openim.sdk.group.InviteUserToGroupResp) |
 
-### 请求参数
+### InviteUserToGroupReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to invite |
@@ -16,7 +16,7 @@
 | reason | [string](#string) |  | invite reason |
 
 
-### 响应参数
+### InviteUserToGroupResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

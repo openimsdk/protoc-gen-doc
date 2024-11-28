@@ -8,7 +8,7 @@
 | ----------- | ------------ | ------------- |
 | KickGroupMember | [KickGroupMemberReq](#openim.sdk.group.KickGroupMemberReq) | [KickGroupMemberResp](#openim.sdk.group.KickGroupMemberResp) |
 
-### 请求参数
+### KickGroupMemberReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to kick |
@@ -16,7 +16,7 @@
 | reason | [string](#string) |  | kick reason |
 
 
-### 响应参数
+### KickGroupMemberResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

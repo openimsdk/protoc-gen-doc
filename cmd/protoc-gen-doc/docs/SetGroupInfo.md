@@ -8,7 +8,7 @@
 | ----------- | ------------ | ------------- |
 | SetGroupInfo | [SetGroupInfoReq](#openim.sdk.group.SetGroupInfoReq) | [SetGroupInfoResp](#openim.sdk.group.SetGroupInfoResp) |
 
-### 请求参数
+### SetGroupInfoReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to set |
@@ -22,7 +22,7 @@
 | applyMemberFriend | [int32](#int32) | optional | whether to allow group members to add friends |
 
 
-### 响应参数
+### SetGroupInfoResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

@@ -8,14 +8,14 @@
 | ----------- | ------------ | ------------- |
 | TransferGroupOwner | [TransferGroupOwnerReq](#openim.sdk.group.TransferGroupOwnerReq) | [TransferGroupOwnerResp](#openim.sdk.group.TransferGroupOwnerResp) |
 
-### 请求参数
+### TransferGroupOwnerReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to transfer |
 | ownerUserID | [string](#string) |  | new owner user id |
 
 
-### 响应参数
+### TransferGroupOwnerResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

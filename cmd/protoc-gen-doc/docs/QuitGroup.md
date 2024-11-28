@@ -8,13 +8,13 @@
 | ----------- | ------------ | ------------- |
 | QuitGroup | [QuitGroupReq](#openim.sdk.group.QuitGroupReq) | [QuitGroupResp](#openim.sdk.group.QuitGroupResp) |
 
-### 请求参数
+### QuitGroupReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you quit |
 
 
-### 响应参数
+### QuitGroupResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 

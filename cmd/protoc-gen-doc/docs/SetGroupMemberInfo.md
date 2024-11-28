@@ -8,7 +8,7 @@
 | ----------- | ------------ | ------------- |
 | SetGroupMemberInfo | [SetGroupMemberInfoReq](#openim.sdk.group.SetGroupMemberInfoReq) | [SetGroupMemberInfoResp](#openim.sdk.group.SetGroupMemberInfoResp) |
 
-### 请求参数
+### SetGroupMemberInfoReq
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | groupID | [string](#string) |  | group id you want to set |
@@ -19,7 +19,7 @@
 | ex | [string](#string) | optional | extension field |
 
 
-### 响应参数
+### SetGroupMemberInfoResp
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 
