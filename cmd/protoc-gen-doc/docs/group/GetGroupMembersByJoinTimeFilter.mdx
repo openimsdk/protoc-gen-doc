@@ -16,12 +16,12 @@ hide_title: true
  
 
 #### GetGroupMembersByJoinTimeFilterReq
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
-| joinTimeBegin | [int64](docs/scalar/scalar.mdx) |  | join time start |
-| joinTimeEnd | [int64](docs/scalar/scalar.mdx) |  | join time end |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
+| joinTimeBegin | [int64](docs/scalar/scalar.mdx) |  | Yes | join time start |
+| joinTimeEnd | [int64](docs/scalar/scalar.mdx) |  | Yes | join time end |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
  
 
 #### GetGroupMembersByJoinTimeFilterResp

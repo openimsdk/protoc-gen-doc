@@ -16,17 +16,17 @@ hide_title: true
  
 
 #### SetGroupInfoReq
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to set |
-| groupName | [string](docs/scalar/scalar.mdx) | optional | group name |
-| notification | [string](docs/scalar/scalar.mdx) | optional | group notification |
-| introduction | [string](docs/scalar/scalar.mdx) | optional | group introduction |
-| faceURL | [string](docs/scalar/scalar.mdx) | optional | group face url |
-| ex | [string](docs/scalar/scalar.mdx) | optional | extension field |
-| needVerification | [int32](docs/scalar/scalar.mdx) | optional | whether to verify the group |
-| lookMemberInfo | [int32](docs/scalar/scalar.mdx) | optional | whether to view the group member information |
-| applyMemberFriend | [int32](docs/scalar/scalar.mdx) | optional | whether to allow group members to add friends |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to set |
+| groupName | [string](docs/scalar/scalar.mdx) | optional | No |  group name |
+| notification | [string](docs/scalar/scalar.mdx) | optional | No |  group notification |
+| introduction | [string](docs/scalar/scalar.mdx) | optional | No |  group introduction |
+| faceURL | [string](docs/scalar/scalar.mdx) | optional | No |  group face url |
+| ex | [string](docs/scalar/scalar.mdx) | optional | Yes | extension field |
+| needVerification | [int32](docs/scalar/scalar.mdx) | optional | No |  whether to verify the group |
+| lookMemberInfo | [int32](docs/scalar/scalar.mdx) | optional | No |  whether to view the group member information |
+| applyMemberFriend | [int32](docs/scalar/scalar.mdx) | optional | Yes | whether to allow group members to add friends |
  
 
 #### SetGroupInfoResp

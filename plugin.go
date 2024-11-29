@@ -185,10 +185,36 @@ func writeEnum(buf *bytes.Buffer, enum *Enum) {
 }
 
 func writeMessage(buf *bytes.Buffer, msg *Message) {
-	buf.WriteString("| Field | Type | Label | Description |\n")
-	buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
-	for _, field := range msg.Fields {
-		buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, strings.ReplaceAll(string(field.Description), "\n", "<br>")))
+	hasRequired := strings.HasSuffix(msg.Name, "Req")
+	if !hasRequired {
+		for _, field := range msg.Fields {
+			if strings.HasPrefix(strings.TrimSpace(string(field.Description)), "@opt") {
+				hasRequired = true
+				break
+			}
+		}
+	}
+	if hasRequired {
+		buf.WriteString("| Field | Type | Label | Required | Description |\n")
+		buf.WriteString("| ----- | ---- | ----- | -------- | ----------- |\n")
+		for _, field := range msg.Fields {
+			text := strings.TrimSpace(string(field.Description))
+			text = strings.ReplaceAll(text, "\n", "<br>")
+			required := "Yes"
+			if strings.HasPrefix(text, "@opt") {
+				text = strings.TrimPrefix(text, "@opt")
+				required = "No"
+				//} else if field.Label == "optional" {
+				//	required = "No"
+			}
+			buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, required, text))
+		}
+	} else {
+		buf.WriteString("| Field | Type | Label | Description |\n")
+		buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
+		for _, field := range msg.Fields {
+			buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, strings.ReplaceAll(string(field.Description), "\n", "<br>")))
+		}
 	}
 }
 

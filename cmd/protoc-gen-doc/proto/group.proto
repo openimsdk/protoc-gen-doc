@@ -13,7 +13,8 @@ message Demo {
 }
 
 message CreateGroupReq {
-  repeated string memberUserIDs = 1;// ordinary group member group member user id
+  // @kx ordinary group member group member user id
+  repeated string memberUserIDs = 1;
   repeated string adminUserIDs = 2;// administrator user id
   shared.IMGroup groupInfo = 3;// group information
 }
@@ -67,13 +68,13 @@ message KickGroupMemberResp {}
 
 message SetGroupInfoReq {
   string groupID = 1;// group id you want to set
-  optional string groupName = 2;// group name
-  optional string notification = 3;// group notification
-  optional string introduction = 4;// group introduction
-  optional string faceURL = 5;// group face url
+  optional string groupName = 2;// @opt group name
+  optional string notification = 3;// @opt group notification
+  optional string introduction = 4;// @opt group introduction
+  optional string faceURL = 5;// @opt group face url
   optional string ex = 6;// extension field
-  optional int32 needVerification = 7;// whether to verify the group
-  optional int32 lookMemberInfo = 8;// whether to view the group member information
+  optional int32 needVerification = 7;// @opt whether to verify the group
+  optional int32 lookMemberInfo = 8;// @opt whether to view the group member information
   optional int32 applyMemberFriend = 9;// whether to allow group members to add friends
 }
 message SetGroupInfoResp {}

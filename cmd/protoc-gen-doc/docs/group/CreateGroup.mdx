@@ -19,11 +19,11 @@ hide_title: true
  
 
 #### CreateGroupReq
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| memberUserIDs | [string](docs/scalar/scalar.mdx) | repeated | ordinary group member group member user id |
-| adminUserIDs | [string](docs/scalar/scalar.mdx) | repeated | administrator user id |
-| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | group information |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| memberUserIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | @kx ordinary group member group member user id |
+| adminUserIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | administrator user id |
+| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | Yes | group information |
  
 
 #### CreateGroupResp

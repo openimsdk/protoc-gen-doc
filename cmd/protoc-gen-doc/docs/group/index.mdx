@@ -51,11 +51,11 @@ hide_title: false
 <a name="ChangeGroupMemberMuteReq"></a>
 ### ChangeGroupMemberMuteReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to mute |
-| userID | [string](docs/scalar/scalar.mdx) |  | user id you want to mute |
-| mutedSeconds | [uint32](docs/scalar/scalar.mdx) |  | mute time (unit: seconds), 0 cancels the mute |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to mute |
+| userID | [string](docs/scalar/scalar.mdx) |  | Yes | user id you want to mute |
+| mutedSeconds | [uint32](docs/scalar/scalar.mdx) |  | Yes | mute time (unit: seconds), 0 cancels the mute |
 
 
 <a name="ChangeGroupMemberMuteResp"></a>
@@ -68,10 +68,10 @@ hide_title: false
 <a name="ChangeGroupMuteReq"></a>
 ### ChangeGroupMuteReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to mute |
-| mute | [bool](docs/scalar/scalar.mdx) |  | mute or cancel mute |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to mute |
+| mute | [bool](docs/scalar/scalar.mdx) |  | Yes | mute or cancel mute |
 
 
 <a name="ChangeGroupMuteResp"></a>
@@ -84,11 +84,11 @@ hide_title: false
 <a name="CreateGroupReq"></a>
 ### CreateGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| memberUserIDs | [string](docs/scalar/scalar.mdx) | repeated | ordinary group member group member user id |
-| adminUserIDs | [string](docs/scalar/scalar.mdx) | repeated | administrator user id |
-| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | group information |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| memberUserIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | @kx ordinary group member group member user id |
+| adminUserIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | administrator user id |
+| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | Yes | group information |
 
 
 <a name="CreateGroupResp"></a>
@@ -110,9 +110,9 @@ hide_title: false
 <a name="DismissGroupReq"></a>
 ### DismissGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you dismissed |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you dismissed |
 
 
 <a name="DismissGroupResp"></a>
@@ -125,9 +125,9 @@ hide_title: false
 <a name="GetGroupMemberOwnerAndAdminReq"></a>
 ### GetGroupMemberOwnerAndAdminReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
 
 
 <a name="GetGroupMemberOwnerAndAdminResp"></a>
@@ -141,12 +141,12 @@ hide_title: false
 <a name="GetGroupMembersByJoinTimeFilterReq"></a>
 ### GetGroupMembersByJoinTimeFilterReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
-| joinTimeBegin | [int64](docs/scalar/scalar.mdx) |  | join time start |
-| joinTimeEnd | [int64](docs/scalar/scalar.mdx) |  | join time end |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
+| joinTimeBegin | [int64](docs/scalar/scalar.mdx) |  | Yes | join time start |
+| joinTimeEnd | [int64](docs/scalar/scalar.mdx) |  | Yes | join time end |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
 
 
 <a name="GetGroupMembersByJoinTimeFilterResp"></a>
@@ -160,11 +160,11 @@ hide_title: false
 <a name="GetGroupMembersReq"></a>
 ### GetGroupMembersReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
-| filter | [GroupFilter](docs/group/index.mdx#GroupFilter) |  | filter |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
+| filter | [GroupFilter](docs/group/index.mdx#GroupFilter) |  | Yes | filter |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
 
 
 <a name="GetGroupMembersResp"></a>
@@ -178,9 +178,9 @@ hide_title: false
 <a name="GetGroupRequestReq"></a>
 ### GetGroupRequestReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| send | [bool](docs/scalar/scalar.mdx) |  | is it the request i sent |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| send | [bool](docs/scalar/scalar.mdx) |  | Yes | is it the request i sent |
 
 
 <a name="GetGroupRequestResp"></a>
@@ -194,9 +194,9 @@ hide_title: false
 <a name="GetJoinedGroupsPageReq"></a>
 ### GetJoinedGroupsPageReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
 
 
 <a name="GetJoinedGroupsPageResp"></a>
@@ -210,8 +210,8 @@ hide_title: false
 <a name="GetJoinedGroupsReq"></a>
 ### GetJoinedGroupsReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
 
 
 <a name="GetJoinedGroupsResp"></a>
@@ -225,10 +225,10 @@ hide_title: false
 <a name="GetSpecifiedGroupMembersInfoReq"></a>
 ### GetSpecifiedGroupMembersInfoReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
-| userIDs | [string](docs/scalar/scalar.mdx) | repeated | user id you want to get |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
+| userIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | user id you want to get |
 
 
 <a name="GetSpecifiedGroupMembersInfoResp"></a>
@@ -242,9 +242,9 @@ hide_title: false
 <a name="GetSpecifiedGroupsInfoReq"></a>
 ### GetSpecifiedGroupsInfoReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupIDs | [string](docs/scalar/scalar.mdx) | repeated | group id you want to get |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | group id you want to get |
 
 
 <a name="GetSpecifiedGroupsInfoResp"></a>
@@ -258,10 +258,10 @@ hide_title: false
 <a name="GetUsersInGroupReq"></a>
 ### GetUsersInGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to get |
-| userIDs | [string](docs/scalar/scalar.mdx) | repeated | user id you want to get |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to get |
+| userIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | user id you want to get |
 
 
 <a name="GetUsersInGroupResp"></a>
@@ -275,12 +275,12 @@ hide_title: false
 <a name="HandlerGroupRequestReq"></a>
 ### HandlerGroupRequestReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to handle1<br><br>group id you want to handle2<br><br>group id you want to handle3<br><br>group id you want to handle4<br> |
-| fromUserID | [string](docs/scalar/scalar.mdx) |  | user id you want to handle |
-| handledMsg | [string](docs/scalar/scalar.mdx) |  | request message |
-| status | [ApprovalStatus](docs/common/index.mdx#ApprovalStatus) |  | approval status |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to handle1<br><br>group id you want to handle2<br><br>group id you want to handle3<br><br>group id you want to handle4<br> |
+| fromUserID | [string](docs/scalar/scalar.mdx) |  | Yes | user id you want to handle |
+| handledMsg | [string](docs/scalar/scalar.mdx) |  | Yes | request message |
+| status | [ApprovalStatus](docs/common/index.mdx#ApprovalStatus) |  | Yes | approval status |
 
 
 <a name="HandlerGroupRequestResp"></a>
@@ -293,11 +293,11 @@ hide_title: false
 <a name="InviteUserToGroupReq"></a>
 ### InviteUserToGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to invite |
-| userIDs | [string](docs/scalar/scalar.mdx) | repeated | user id you want to invite |
-| reason | [string](docs/scalar/scalar.mdx) |  | invite reason |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to invite |
+| userIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | user id you want to invite |
+| reason | [string](docs/scalar/scalar.mdx) |  | Yes | invite reason |
 
 
 <a name="InviteUserToGroupResp"></a>
@@ -310,10 +310,10 @@ hide_title: false
 <a name="IsJoinGroupReq"></a>
 ### IsJoinGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to check |
-| userID | [string](docs/scalar/scalar.mdx) |  | user id you want to check |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to check |
+| userID | [string](docs/scalar/scalar.mdx) |  | Yes | user id you want to check |
 
 
 <a name="IsJoinGroupResp"></a>
@@ -327,12 +327,12 @@ hide_title: false
 <a name="JoinGroupReq"></a>
 ### JoinGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you joined |
-| reqMessage | [string](docs/scalar/scalar.mdx) |  | request message |
-| joinSource | [GroupJoinSource](docs/shared/index.mdx#GroupJoinSource) |  | join source |
-| ex | [string](docs/scalar/scalar.mdx) |  | extension field |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you joined |
+| reqMessage | [string](docs/scalar/scalar.mdx) |  | Yes | request message |
+| joinSource | [GroupJoinSource](docs/shared/index.mdx#GroupJoinSource) |  | Yes | join source |
+| ex | [string](docs/scalar/scalar.mdx) |  | Yes | extension field |
 
 
 <a name="JoinGroupResp"></a>
@@ -345,11 +345,11 @@ hide_title: false
 <a name="KickGroupMemberReq"></a>
 ### KickGroupMemberReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to kick |
-| kickedUserIDs | [string](docs/scalar/scalar.mdx) | repeated | user id you want to kick |
-| reason | [string](docs/scalar/scalar.mdx) |  | kick reason |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to kick |
+| kickedUserIDs | [string](docs/scalar/scalar.mdx) | repeated | Yes | user id you want to kick |
+| reason | [string](docs/scalar/scalar.mdx) |  | Yes | kick reason |
 
 
 <a name="KickGroupMemberResp"></a>
@@ -362,9 +362,9 @@ hide_title: false
 <a name="QuitGroupReq"></a>
 ### QuitGroupReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you quit |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you quit |
 
 
 <a name="QuitGroupResp"></a>
@@ -377,13 +377,13 @@ hide_title: false
 <a name="SearchGroupMembersReq"></a>
 ### SearchGroupMembersReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to search |
-| Keyword | [string](docs/scalar/scalar.mdx) |  | search keyword |
-| searchUserID | [bool](docs/scalar/scalar.mdx) |  | search user id |
-| searchMemberNickname | [bool](docs/scalar/scalar.mdx) |  | search user nickname |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to search |
+| Keyword | [string](docs/scalar/scalar.mdx) |  | Yes | search keyword |
+| searchUserID | [bool](docs/scalar/scalar.mdx) |  | Yes | search user id |
+| searchMemberNickname | [bool](docs/scalar/scalar.mdx) |  | Yes | search user nickname |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
 
 
 <a name="SearchGroupMembersResp"></a>
@@ -397,11 +397,11 @@ hide_title: false
 <a name="SearchGroupsReq"></a>
 ### SearchGroupsReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| keyword | [string](docs/scalar/scalar.mdx) |  | search keyword |
-| searchGroupID | [bool](docs/scalar/scalar.mdx) |  | search group id |
-| searchGroupName | [bool](docs/scalar/scalar.mdx) |  | search group name |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| keyword | [string](docs/scalar/scalar.mdx) |  | Yes | search keyword |
+| searchGroupID | [bool](docs/scalar/scalar.mdx) |  | Yes | search group id |
+| searchGroupName | [bool](docs/scalar/scalar.mdx) |  | Yes | search group name |
 
 
 <a name="SearchGroupsResp"></a>
@@ -415,17 +415,17 @@ hide_title: false
 <a name="SetGroupInfoReq"></a>
 ### SetGroupInfoReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to set |
-| groupName | [string](docs/scalar/scalar.mdx) | optional | group name |
-| notification | [string](docs/scalar/scalar.mdx) | optional | group notification |
-| introduction | [string](docs/scalar/scalar.mdx) | optional | group introduction |
-| faceURL | [string](docs/scalar/scalar.mdx) | optional | group face url |
-| ex | [string](docs/scalar/scalar.mdx) | optional | extension field |
-| needVerification | [int32](docs/scalar/scalar.mdx) | optional | whether to verify the group |
-| lookMemberInfo | [int32](docs/scalar/scalar.mdx) | optional | whether to view the group member information |
-| applyMemberFriend | [int32](docs/scalar/scalar.mdx) | optional | whether to allow group members to add friends |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to set |
+| groupName | [string](docs/scalar/scalar.mdx) | optional | No |  group name |
+| notification | [string](docs/scalar/scalar.mdx) | optional | No |  group notification |
+| introduction | [string](docs/scalar/scalar.mdx) | optional | No |  group introduction |
+| faceURL | [string](docs/scalar/scalar.mdx) | optional | No |  group face url |
+| ex | [string](docs/scalar/scalar.mdx) | optional | Yes | extension field |
+| needVerification | [int32](docs/scalar/scalar.mdx) | optional | No |  whether to verify the group |
+| lookMemberInfo | [int32](docs/scalar/scalar.mdx) | optional | No |  whether to view the group member information |
+| applyMemberFriend | [int32](docs/scalar/scalar.mdx) | optional | Yes | whether to allow group members to add friends |
 
 
 <a name="SetGroupInfoResp"></a>
@@ -438,14 +438,14 @@ hide_title: false
 <a name="SetGroupMemberInfoReq"></a>
 ### SetGroupMemberInfoReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to set |
-| userID | [string](docs/scalar/scalar.mdx) |  | user id you want to set |
-| nickname | [string](docs/scalar/scalar.mdx) | optional | user nickname |
-| faceURL | [string](docs/scalar/scalar.mdx) | optional | user face url |
-| roleLevel | [int32](docs/scalar/scalar.mdx) | optional | user role level |
-| ex | [string](docs/scalar/scalar.mdx) | optional | extension field |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to set |
+| userID | [string](docs/scalar/scalar.mdx) |  | Yes | user id you want to set |
+| nickname | [string](docs/scalar/scalar.mdx) | optional | Yes | user nickname |
+| faceURL | [string](docs/scalar/scalar.mdx) | optional | Yes | user face url |
+| roleLevel | [int32](docs/scalar/scalar.mdx) | optional | Yes | user role level |
+| ex | [string](docs/scalar/scalar.mdx) | optional | Yes | extension field |
 
 
 <a name="SetGroupMemberInfoResp"></a>
@@ -458,10 +458,10 @@ hide_title: false
 <a name="TransferGroupOwnerReq"></a>
 ### TransferGroupOwnerReq
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to transfer |
-| ownerUserID | [string](docs/scalar/scalar.mdx) |  | new owner user id |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to transfer |
+| ownerUserID | [string](docs/scalar/scalar.mdx) |  | Yes | new owner user id |
 
 
 <a name="TransferGroupOwnerResp"></a>

@@ -16,13 +16,13 @@ hide_title: true
  
 
 #### SearchGroupMembersReq
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](docs/scalar/scalar.mdx) |  | group id you want to search |
-| Keyword | [string](docs/scalar/scalar.mdx) |  | search keyword |
-| searchUserID | [bool](docs/scalar/scalar.mdx) |  | search user id |
-| searchMemberNickname | [bool](docs/scalar/scalar.mdx) |  | search user nickname |
-| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+| Field | Type | Label | Required | Description |
+| ----- | ---- | ----- | -------- | ----------- |
+| groupID | [string](docs/scalar/scalar.mdx) |  | Yes | group id you want to search |
+| Keyword | [string](docs/scalar/scalar.mdx) |  | Yes | search keyword |
+| searchUserID | [bool](docs/scalar/scalar.mdx) |  | Yes | search user id |
+| searchMemberNickname | [bool](docs/scalar/scalar.mdx) |  | Yes | search user nickname |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | Yes | pagination |
  
 
 #### SearchGroupMembersResp

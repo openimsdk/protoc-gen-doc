@@ -124,11 +124,10 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groupID | [string](#string) |  | group id you want to get |
-| userIDs | [string](#string) | repeated | user id you want to get |
-
+| Field   | Type              | Label    | Description              |
+|---------|-------------------|----------|--------------------------|
+| groupID | [string](#string) |          | group id you want to get |
+| userIDs | [string](#string) | repeated | user id you want to get  |
 
 
 
