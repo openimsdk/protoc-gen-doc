@@ -74,7 +74,8 @@ message SetGroupInfoReq {
   optional string faceURL = 5;// @opt group face url
   optional string ex = 6;// extension field
   optional int32 needVerification = 7;// @opt whether to verify the group
-  optional int32 lookMemberInfo = 8;// @opt whether to view the group member information
+  // @opt whether to view the group member information
+  optional int32 lookMemberInfo = 8;
   optional int32 applyMemberFriend = 9;// whether to allow group members to add friends
 }
 message SetGroupInfoResp {}

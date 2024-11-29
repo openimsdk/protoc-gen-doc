@@ -203,6 +203,7 @@ func writeMessage(buf *bytes.Buffer, msg *Message) {
 			required := "Yes"
 			if strings.HasPrefix(text, "@opt") {
 				text = strings.TrimPrefix(text, "@opt")
+				text = strings.TrimSpace(text)
 				required = "No"
 				//} else if field.Label == "optional" {
 				//	required = "No"
