@@ -29,6 +29,7 @@ import (
 export PATH=$PATH:$(pwd)
 protoc --proto_path=. --doc_out=. --doc_opt=markdown,group.md group.proto
 go build; protoc --proto_path=. --doc_out=docs --doc_opt=markdown,group.md group.proto
+go build; protoc --proto_path=proto --doc_out=docs --doc_opt=markdown,docs/group.md proto/group.proto
 */
 func main() {
 	if flags := ParseFlags(os.Stdout, os.Args); HandleFlags(flags) {

@@ -74,6 +74,7 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 			}
 		}
 		for _, file := range template.Files {
+			name := strings.TrimSuffix(file.Name, filepath.Ext(file.Name))
 			for _, service := range file.Services {
 				for _, method := range service.Methods {
 					_, desc := splitDescription(string(method.Description))
@@ -87,7 +88,7 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 						buf.WriteString(fmt.Sprintf("- %s\n", d))
 					}
 					buf.WriteString("\n\n")
-					writeMethod(&buf, method)
+					writeMethod(&buf, false, method)
 					buf.WriteString(" \n\n")
 					buf.WriteString(fmt.Sprintf("#### %s\n", method.RequestType))
 					writeMessage(&buf, msgData[method.RequestFullType])
@@ -96,27 +97,41 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 					writeMessage(&buf, msgData[method.ResponseFullType])
 					buf.WriteString("\n\n")
 					resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
-						Name:    proto.String(filepath.Join(dir, method.Name+".md")),
+						Name:    proto.String(filepath.Join(dir, name, method.Name+".md")),
 						Content: proto.String(buf.String()),
 					})
 				}
 			}
 			buf.Reset()
-			buf.WriteString(fmt.Sprintf("# %s\n\n", file.Name))
-			for _, service := range file.Services {
-				writeMethod(&buf, service.Methods...)
+			if file.HasServices {
+				buf.WriteString(fmt.Sprintf("# Api\n\n"))
+				for _, service := range file.Services {
+					writeMethod(&buf, true, service.Methods...)
+				}
 			}
 			buf.WriteString("\n\n")
-			for _, message := range file.Messages {
-				buf.WriteString(fmt.Sprintf(`<a name="%s"></a>`, message.Name))
-				buf.WriteString(fmt.Sprintf("\n### %s\n\n", message.Name))
-				writeMessage(&buf, message)
-				buf.WriteString("\n\n")
+			if file.HasEnums {
+				buf.WriteString("## Enums\n\n")
+				for _, enum := range file.Enums {
+					writeEnum(&buf, enum)
+					buf.WriteString("\n\n")
+				}
 			}
-			resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
-				Name:    proto.String("index.md"),
-				Content: proto.String(buf.String()),
-			})
+
+			if file.HasMessages {
+				buf.WriteString("## Messages\n\n")
+				for _, message := range file.Messages {
+					buf.WriteString(fmt.Sprintf(`<a name="%s"></a>`, message.Name))
+					buf.WriteString(fmt.Sprintf("\n### %s\n\n", message.Name))
+					writeMessage(&buf, message)
+					buf.WriteString("\n\n")
+				}
+				resp.File = append(resp.File, &plugin_go.CodeGeneratorResponse_File{
+					Name:    proto.String(filepath.Join(dir, name, "index.md")),
+					Content: proto.String(buf.String()),
+				})
+			}
+
 		}
 	}
 	resp.SupportedFeatures = proto.Uint64(SupportedFeatures)
@@ -131,20 +146,32 @@ func splitDescription(desc string) (string, []string) {
 	return res[0], res[1:]
 }
 
+func writeEnum(buf *bytes.Buffer, enum *Enum) {
+	buf.WriteString("| Name | Number | Description |\n")
+	buf.WriteString("| ---- | ------ | ----------- |\n")
+	for _, value := range enum.Values {
+		buf.WriteString(fmt.Sprintf("| %s | %s | %s |\n", value.Name, value.Number, strings.ReplaceAll(string(value.Description), "\n", "<br>")))
+	}
+}
+
 func writeMessage(buf *bytes.Buffer, msg *Message) {
 	buf.WriteString("| Field | Type | Label | Description |\n")
 	buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
 	for _, field := range msg.Fields {
-		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | %s | %s |\n", field.Name, field.Type, field.FullType, field.Label, field.Description))
+		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | %s | %s |\n", field.Name, field.Type, field.FullType, field.Label, strings.ReplaceAll(string(field.Description), "\n", "<br>")))
 	}
 }
 
-func writeMethod(buf *bytes.Buffer, methods ...*ServiceMethod) {
+func writeMethod(buf *bytes.Buffer, link bool, methods ...*ServiceMethod) {
 	buf.WriteString("| Method Name | Request Type | Response Type | Description |\n")
 	buf.WriteString("| ----------- | ------------ | ------------- | ------------- |\n")
 	for _, method := range methods {
 		simple, _ := splitDescription(string(method.Description))
-		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | [%s](#%s) | %s |\n", method.Name, method.RequestType, method.RequestFullType, method.ResponseType, method.ResponseFullType, simple))
+		name := method.Name
+		if link {
+			name = fmt.Sprintf("[%s](#%s)", method.Name, method.Name)
+		}
+		buf.WriteString(fmt.Sprintf("| %s | [%s](#%s) | [%s](#%s) | %s |\n", name, method.RequestType, method.RequestFullType, method.ResponseType, method.ResponseFullType, simple))
 	}
 }
 
