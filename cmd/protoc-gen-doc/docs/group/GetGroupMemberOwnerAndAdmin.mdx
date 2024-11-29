@@ -1,0 +1,29 @@
+---
+sidebar_position: 16
+title: GetGroupMemberOwnerAndAdmin
+hide_title: true
+---
+
+# GetGroupMemberOwnerAndAdmin
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetGroupMemberOwnerAndAdmin | [GetGroupMemberOwnerAndAdminReq](docs/group/index.mdx#GetGroupMemberOwnerAndAdminReq) | [GetGroupMemberOwnerAndAdminResp](docs/group/index.mdx#GetGroupMemberOwnerAndAdminResp) | get group member owner and admin |
+ 
+
+#### GetGroupMemberOwnerAndAdminReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+ 
+
+#### GetGroupMemberOwnerAndAdminResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+

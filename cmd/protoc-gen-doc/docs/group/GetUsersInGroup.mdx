@@ -1,0 +1,30 @@
+---
+sidebar_position: 23
+title: GetUsersInGroup
+hide_title: true
+---
+
+# GetUsersInGroup
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetUsersInGroup | [GetUsersInGroupReq](docs/group/index.mdx#GetUsersInGroupReq) | [GetUsersInGroupResp](docs/group/index.mdx#GetUsersInGroupResp) | get users in group |
+ 
+
+#### GetUsersInGroupReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id you want to get |
+ 
+
+#### GetUsersInGroupResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id in the group |
+
+

@@ -1,0 +1,55 @@
+syntax = "proto3";
+package openim.sdk.interop;
+
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/interop";
+
+message jsFileOpenReq {
+  string uuid = 1;
+}
+message jsFileOpenResp {
+  int64 size = 1;
+}
+
+message jsFileReadReq {
+  string uuid = 1;
+  int64 offset = 2;
+  int64 length = 3;
+}
+message jsFileReadResp {
+  bytes data = 1;
+}
+
+message jsFileCloseReq {
+  string uuid = 1;
+}
+message jsFileCloseResp {}
+
+message jsSqliteOpenReq {
+  string name = 1;
+}
+message jsSqliteOpenResp {
+  int64 id = 1;
+}
+
+message jsSqliteCloseReq {
+  int64 id = 1;
+}
+message jsSqliteCloseResp {}
+
+message jsSqliteExecReq {
+  int64 id = 1;
+  string sql = 2;
+  string args = 3; // json array
+}
+message jsSqliteExecResp {
+  int64 affected = 1;
+}
+
+message jsSqliteQueryReq {
+  int64 id = 1;
+  string sql = 2;
+  string args = 3; // json array
+}
+message jsSqliteQueryResp {
+  string result = 1; // json array
+}

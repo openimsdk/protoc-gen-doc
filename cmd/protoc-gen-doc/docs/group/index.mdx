@@ -1,0 +1,473 @@
+---
+sidebar_position: 1
+title: group
+hide_title: false
+---
+
+# Api
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| [CreateGroup](docs/group/CreateGroup.mdx) | [CreateGroupReq](docs/group/index.mdx#CreateGroupReq) | [CreateGroupResp](docs/group/index.mdx#CreateGroupResp) | This is a leading comment for a message |
+| [JoinGroup](docs/group/JoinGroup.mdx) | [JoinGroupReq](docs/group/index.mdx#JoinGroupReq) | [JoinGroupResp](docs/group/index.mdx#JoinGroupResp) | join a group |
+| [QuitGroup](docs/group/QuitGroup.mdx) | [QuitGroupReq](docs/group/index.mdx#QuitGroupReq) | [QuitGroupResp](docs/group/index.mdx#QuitGroupResp) | quit a group |
+| [DismissGroup](docs/group/DismissGroup.mdx) | [DismissGroupReq](docs/group/index.mdx#DismissGroupReq) | [DismissGroupResp](docs/group/index.mdx#DismissGroupResp) | dismiss a group |
+| [ChangeGroupMute](docs/group/ChangeGroupMute.mdx) | [ChangeGroupMuteReq](docs/group/index.mdx#ChangeGroupMuteReq) | [ChangeGroupMuteResp](docs/group/index.mdx#ChangeGroupMuteResp) | mute or cancel mute a group |
+| [ChangeGroupMemberMute](docs/group/ChangeGroupMemberMute.mdx) | [ChangeGroupMemberMuteReq](docs/group/index.mdx#ChangeGroupMemberMuteReq) | [ChangeGroupMemberMuteResp](docs/group/index.mdx#ChangeGroupMemberMuteResp) | mute or cancel mute a group member |
+| [TransferGroupOwner](docs/group/TransferGroupOwner.mdx) | [TransferGroupOwnerReq](docs/group/index.mdx#TransferGroupOwnerReq) | [TransferGroupOwnerResp](docs/group/index.mdx#TransferGroupOwnerResp) | transfer group owner |
+| [KickGroupMember](docs/group/KickGroupMember.mdx) | [KickGroupMemberReq](docs/group/index.mdx#KickGroupMemberReq) | [KickGroupMemberResp](docs/group/index.mdx#KickGroupMemberResp) | kick a group member |
+| [SetGroupInfo](docs/group/SetGroupInfo.mdx) | [SetGroupInfoReq](docs/group/index.mdx#SetGroupInfoReq) | [SetGroupInfoResp](docs/group/index.mdx#SetGroupInfoResp) | set group information |
+| [SetGroupMemberInfo](docs/group/SetGroupMemberInfo.mdx) | [SetGroupMemberInfoReq](docs/group/index.mdx#SetGroupMemberInfoReq) | [SetGroupMemberInfoResp](docs/group/index.mdx#SetGroupMemberInfoResp) | set group member information |
+| [GetJoinedGroups](docs/group/GetJoinedGroups.mdx) | [GetJoinedGroupsReq](docs/group/index.mdx#GetJoinedGroupsReq) | [GetJoinedGroupsResp](docs/group/index.mdx#GetJoinedGroupsResp) | get joined groups |
+| [GetJoinedGroupsPage](docs/group/GetJoinedGroupsPage.mdx) | [GetJoinedGroupsPageReq](docs/group/index.mdx#GetJoinedGroupsPageReq) | [GetJoinedGroupsPageResp](docs/group/index.mdx#GetJoinedGroupsPageResp) | get joined groups by page |
+| [GetSpecifiedGroupsInfo](docs/group/GetSpecifiedGroupsInfo.mdx) | [GetSpecifiedGroupsInfoReq](docs/group/index.mdx#GetSpecifiedGroupsInfoReq) | [GetSpecifiedGroupsInfoResp](docs/group/index.mdx#GetSpecifiedGroupsInfoResp) | get specified groups information |
+| [SearchGroups](docs/group/SearchGroups.mdx) | [SearchGroupsReq](docs/group/index.mdx#SearchGroupsReq) | [SearchGroupsResp](docs/group/index.mdx#SearchGroupsResp) | search groups |
+| [GetGroupMemberOwnerAndAdmin](docs/group/GetGroupMemberOwnerAndAdmin.mdx) | [GetGroupMemberOwnerAndAdminReq](docs/group/index.mdx#GetGroupMemberOwnerAndAdminReq) | [GetGroupMemberOwnerAndAdminResp](docs/group/index.mdx#GetGroupMemberOwnerAndAdminResp) | get group member owner and admin |
+| [GetGroupMembersByJoinTimeFilter](docs/group/GetGroupMembersByJoinTimeFilter.mdx) | [GetGroupMembersByJoinTimeFilterReq](docs/group/index.mdx#GetGroupMembersByJoinTimeFilterReq) | [GetGroupMembersByJoinTimeFilterResp](docs/group/index.mdx#GetGroupMembersByJoinTimeFilterResp) | get group members by join time filter |
+| [GetSpecifiedGroupMembersInfo](docs/group/GetSpecifiedGroupMembersInfo.mdx) | [GetSpecifiedGroupMembersInfoReq](docs/group/index.mdx#GetSpecifiedGroupMembersInfoReq) | [GetSpecifiedGroupMembersInfoResp](docs/group/index.mdx#GetSpecifiedGroupMembersInfoResp) | get specified group members information |
+| [GetGroupMembers](docs/group/GetGroupMembers.mdx) | [GetGroupMembersReq](docs/group/index.mdx#GetGroupMembersReq) | [GetGroupMembersResp](docs/group/index.mdx#GetGroupMembersResp) | get group members |
+| [GetGroupRequest](docs/group/GetGroupRequest.mdx) | [GetGroupRequestReq](docs/group/index.mdx#GetGroupRequestReq) | [GetGroupRequestResp](docs/group/index.mdx#GetGroupRequestResp) | get group request |
+| [SearchGroupMembers](docs/group/SearchGroupMembers.mdx) | [SearchGroupMembersReq](docs/group/index.mdx#SearchGroupMembersReq) | [SearchGroupMembersResp](docs/group/index.mdx#SearchGroupMembersResp) | get group request |
+| [IsJoinGroup](docs/group/IsJoinGroup.mdx) | [IsJoinGroupReq](docs/group/index.mdx#IsJoinGroupReq) | [IsJoinGroupResp](docs/group/index.mdx#IsJoinGroupResp) | is join group |
+| [GetUsersInGroup](docs/group/GetUsersInGroup.mdx) | [GetUsersInGroupReq](docs/group/index.mdx#GetUsersInGroupReq) | [GetUsersInGroupResp](docs/group/index.mdx#GetUsersInGroupResp) | get users in group |
+| [InviteUserToGroup](docs/group/InviteUserToGroup.mdx) | [InviteUserToGroupReq](docs/group/index.mdx#InviteUserToGroupReq) | [InviteUserToGroupResp](docs/group/index.mdx#InviteUserToGroupResp) | invite user to group |
+| [HandlerGroupRequest](docs/group/HandlerGroupRequest.mdx) | [HandlerGroupRequestReq](docs/group/index.mdx#HandlerGroupRequestReq) | [HandlerGroupRequestResp](docs/group/index.mdx#HandlerGroupRequestResp) | handler group request |
+
+
+## Enums
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| All | 0 | all users |
+| Owner | 1 | owner users |
+| Admin | 2 | admin users |
+| OrdinaryUsers | 3 | ordinary users |
+| AdminAndOrdinaryUsers | 4 | admin and ordinary users |
+| OwnerAndAdmin | 5 | owner and admin users |
+
+
+## Messages
+
+<a name="ChangeGroupMemberMuteReq"></a>
+### ChangeGroupMemberMuteReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to mute |
+| userID | docs/scalar/scalar.mdx |  | user id you want to mute |
+| mutedSeconds | docs/scalar/scalar.mdx |  | mute time (unit: seconds), 0 cancels the mute |
+
+
+<a name="ChangeGroupMemberMuteResp"></a>
+### ChangeGroupMemberMuteResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="ChangeGroupMuteReq"></a>
+### ChangeGroupMuteReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to mute |
+| mute | docs/scalar/scalar.mdx |  | mute or cancel mute |
+
+
+<a name="ChangeGroupMuteResp"></a>
+### ChangeGroupMuteResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="CreateGroupReq"></a>
+### CreateGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| memberUserIDs | docs/scalar/scalar.mdx | repeated | ordinary group member group member user id |
+| adminUserIDs | docs/scalar/scalar.mdx | repeated | administrator user id |
+| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | group information |
+
+
+<a name="CreateGroupResp"></a>
+### CreateGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupInfo | [IMGroup](docs/shared/index.mdx#IMGroup) |  | group information |
+
+
+<a name="Demo"></a>
+### Demo
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | docs/scalar/any.mdx |  | value |
+
+
+<a name="DismissGroupReq"></a>
+### DismissGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you dismissed |
+
+
+<a name="DismissGroupResp"></a>
+### DismissGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="GetGroupMemberOwnerAndAdminReq"></a>
+### GetGroupMemberOwnerAndAdminReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+
+
+<a name="GetGroupMemberOwnerAndAdminResp"></a>
+### GetGroupMemberOwnerAndAdminResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+
+<a name="GetGroupMembersByJoinTimeFilterReq"></a>
+### GetGroupMembersByJoinTimeFilterReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| joinTimeBegin | docs/scalar/scalar.mdx |  | join time start |
+| joinTimeEnd | docs/scalar/scalar.mdx |  | join time end |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+
+
+<a name="GetGroupMembersByJoinTimeFilterResp"></a>
+### GetGroupMembersByJoinTimeFilterResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+
+<a name="GetGroupMembersReq"></a>
+### GetGroupMembersReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| filter | [GroupFilter](docs/group/index.mdx#GroupFilter) |  | filter |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+
+
+<a name="GetGroupMembersResp"></a>
+### GetGroupMembersResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+
+<a name="GetGroupRequestReq"></a>
+### GetGroupRequestReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| send | docs/scalar/scalar.mdx |  | is it the request i sent |
+
+
+<a name="GetGroupRequestResp"></a>
+### GetGroupRequestResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| requests | [IMGroupRequest](docs/shared/index.mdx#IMGroupRequest) | repeated | group request information |
+
+
+<a name="GetJoinedGroupsPageReq"></a>
+### GetJoinedGroupsPageReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+
+
+<a name="GetJoinedGroupsPageResp"></a>
+### GetJoinedGroupsPageResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groups | [IMGroup](docs/shared/index.mdx#IMGroup) | repeated | group information |
+
+
+<a name="GetJoinedGroupsReq"></a>
+### GetJoinedGroupsReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="GetJoinedGroupsResp"></a>
+### GetJoinedGroupsResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groups | [IMGroup](docs/shared/index.mdx#IMGroup) | repeated | group information |
+
+
+<a name="GetSpecifiedGroupMembersInfoReq"></a>
+### GetSpecifiedGroupMembersInfoReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id you want to get |
+
+
+<a name="GetSpecifiedGroupMembersInfoResp"></a>
+### GetSpecifiedGroupMembersInfoResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+
+<a name="GetSpecifiedGroupsInfoReq"></a>
+### GetSpecifiedGroupsInfoReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupIDs | docs/scalar/scalar.mdx | repeated | group id you want to get |
+
+
+<a name="GetSpecifiedGroupsInfoResp"></a>
+### GetSpecifiedGroupsInfoResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groups | [IMGroup](docs/shared/index.mdx#IMGroup) | repeated | group information |
+
+
+<a name="GetUsersInGroupReq"></a>
+### GetUsersInGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id you want to get |
+
+
+<a name="GetUsersInGroupResp"></a>
+### GetUsersInGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id in the group |
+
+
+<a name="HandlerGroupRequestReq"></a>
+### HandlerGroupRequestReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to handle1<br><br>group id you want to handle2<br><br>group id you want to handle3<br><br>group id you want to handle4<br> |
+| fromUserID | docs/scalar/scalar.mdx |  | user id you want to handle |
+| handledMsg | docs/scalar/scalar.mdx |  | request message |
+| status | [ApprovalStatus](docs/common/index.mdx#ApprovalStatus) |  | approval status |
+
+
+<a name="HandlerGroupRequestResp"></a>
+### HandlerGroupRequestResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="InviteUserToGroupReq"></a>
+### InviteUserToGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to invite |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id you want to invite |
+| reason | docs/scalar/scalar.mdx |  | invite reason |
+
+
+<a name="InviteUserToGroupResp"></a>
+### InviteUserToGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="IsJoinGroupReq"></a>
+### IsJoinGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to check |
+| userID | docs/scalar/scalar.mdx |  | user id you want to check |
+
+
+<a name="IsJoinGroupResp"></a>
+### IsJoinGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| joined | docs/scalar/scalar.mdx |  | whether to join the group |
+
+
+<a name="JoinGroupReq"></a>
+### JoinGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you joined |
+| reqMessage | docs/scalar/scalar.mdx |  | request message |
+| joinSource | [GroupJoinSource](docs/shared/index.mdx#GroupJoinSource) |  | join source |
+| ex | docs/scalar/scalar.mdx |  | extension field |
+
+
+<a name="JoinGroupResp"></a>
+### JoinGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="KickGroupMemberReq"></a>
+### KickGroupMemberReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to kick |
+| kickedUserIDs | docs/scalar/scalar.mdx | repeated | user id you want to kick |
+| reason | docs/scalar/scalar.mdx |  | kick reason |
+
+
+<a name="KickGroupMemberResp"></a>
+### KickGroupMemberResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="QuitGroupReq"></a>
+### QuitGroupReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you quit |
+
+
+<a name="QuitGroupResp"></a>
+### QuitGroupResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="SearchGroupMembersReq"></a>
+### SearchGroupMembersReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to search |
+| Keyword | docs/scalar/scalar.mdx |  | search keyword |
+| searchUserID | docs/scalar/scalar.mdx |  | search user id |
+| searchMemberNickname | docs/scalar/scalar.mdx |  | search user nickname |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+
+
+<a name="SearchGroupMembersResp"></a>
+### SearchGroupMembersResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+
+<a name="SearchGroupsReq"></a>
+### SearchGroupsReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| keyword | docs/scalar/scalar.mdx |  | search keyword |
+| searchGroupID | docs/scalar/scalar.mdx |  | search group id |
+| searchGroupName | docs/scalar/scalar.mdx |  | search group name |
+
+
+<a name="SearchGroupsResp"></a>
+### SearchGroupsResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groups | [IMGroup](docs/shared/index.mdx#IMGroup) | repeated | group information |
+
+
+<a name="SetGroupInfoReq"></a>
+### SetGroupInfoReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to set |
+| groupName | docs/scalar/scalar.mdx | optional | group name |
+| notification | docs/scalar/scalar.mdx | optional | group notification |
+| introduction | docs/scalar/scalar.mdx | optional | group introduction |
+| faceURL | docs/scalar/scalar.mdx | optional | group face url |
+| ex | docs/scalar/scalar.mdx | optional | extension field |
+| needVerification | docs/scalar/scalar.mdx | optional | whether to verify the group |
+| lookMemberInfo | docs/scalar/scalar.mdx | optional | whether to view the group member information |
+| applyMemberFriend | docs/scalar/scalar.mdx | optional | whether to allow group members to add friends |
+
+
+<a name="SetGroupInfoResp"></a>
+### SetGroupInfoResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="SetGroupMemberInfoReq"></a>
+### SetGroupMemberInfoReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to set |
+| userID | docs/scalar/scalar.mdx |  | user id you want to set |
+| nickname | docs/scalar/scalar.mdx | optional | user nickname |
+| faceURL | docs/scalar/scalar.mdx | optional | user face url |
+| roleLevel | docs/scalar/scalar.mdx | optional | user role level |
+| ex | docs/scalar/scalar.mdx | optional | extension field |
+
+
+<a name="SetGroupMemberInfoResp"></a>
+### SetGroupMemberInfoResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+
+<a name="TransferGroupOwnerReq"></a>
+### TransferGroupOwnerReq
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to transfer |
+| ownerUserID | docs/scalar/scalar.mdx |  | new owner user id |
+
+
+<a name="TransferGroupOwnerResp"></a>
+### TransferGroupOwnerResp
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+

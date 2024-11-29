@@ -1,0 +1,379 @@
+syntax = "proto3";
+package openim.event;
+
+import "shared.proto";
+
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/event";
+
+enum FuncRequestEventName {
+  None = 0;
+  GetAllConversationList = 1;
+  GetConversationList = 2;
+  GetConversation = 3;
+  InitSDK = 4;
+  Login = 5;
+  Logout = 106;
+  SetAppBackgroundStatus = 107;
+  NetworkStatusChanged = 108;
+  GetLoginStatus = 109;
+  Version = 110;
+
+  SendMessage = 6;
+  UploadLogs = 7;
+  UploadFile = 8;
+  Log = 9;
+  UpdateFcmToken = 10;
+  SetAppBadge = 11;
+  EventOnSendMsgProgress = 12;
+  EventOnUploadFileProgress = 13;
+  EventOnUploadLogsProgress = 14;
+  EventOnConnecting = 15;
+  EventOnConnectSuccess = 16;
+  EventOnConnectFailed = 17;
+  EventOnKickedOffline = 18;
+  EventOnUserTokenExpired = 19;
+  EventOnUserTokenInvalid = 20;
+  EventOnSyncServerStart = 21;
+  EventOnSyncServerFinish = 22;
+  EventOnSyncServerFailed = 23;
+  EventOnSyncServerProgress = 24;
+  EventOnNewConversation = 25;
+  EventOnConversationChanged = 26;
+  EventOnTotalUnreadMessageCountChanged = 27;
+  EventOnConversationUserInputStatusChanged = 28;
+  EventOnRecvNewMessage = 29;
+  EventOnRecvC2CReadReceipt = 30;
+  EventOnNewRecvMessageRevoked = 31;
+  EventOnRecvOfflineNewMessage = 32;
+  EventOnMessageDeleted = 33;
+  EventOnRecvOnlineOnlyMessage = 34;
+  EventOnMessageEdited = 35;
+  // FriendCallback Events
+  EventOnFriendApplicationAdded = 36;
+  EventOnFriendApplicationDeleted = 37;
+  EventOnFriendApplicationAccepted = 38;
+  EventOnFriendApplicationRejected = 39;
+  EventOnFriendAdded = 40;
+  EventOnFriendDeleted = 41;
+  EventOnFriendInfoChanged = 42;
+  EventOnBlackAdded = 43;
+  EventOnBlackDeleted = 44;
+
+  // GroupCallback Events
+  EventOnJoinedGroupAdded = 45;
+  EventOnJoinedGroupDeleted = 46;
+  EventOnGroupMemberAdded = 47;
+  EventOnGroupMemberDeleted = 48;
+  EventOnGroupApplicationAdded = 49;
+  EventOnGroupApplicationDeleted = 50;
+  EventOnGroupInfoChanged = 51;
+  EventOnGroupDismissed = 52;
+  EventOnGroupMemberInfoChanged = 53;
+  EventOnGroupApplicationAccepted = 54;
+  EventOnGroupApplicationRejected = 55;
+
+  // CustomBusinessCallback Events
+  EventOnRecvCustomBusinessMessage = 56;
+
+  // UserCallback Events
+  EventOnSelfInfoUpdated = 57;
+  EventOnUserStatusChanged = 58;
+  EventOnUserCommandAdd = 59;
+  EventOnUserCommandDelete = 60;
+  EventOnUserCommandUpdate = 61;
+
+  CreateGroup = 1000;
+  JoinGroup = 1001;
+  QuitGroup = 1002;
+  DismissGroup = 1003;
+  ChangeGroupMute = 1004;
+  ChangeGroupMemberMute = 1005;
+  TransferGroupOwner = 1006;
+  KickGroupMember = 1007;
+  SetGroupInfo = 1008;
+  SetGroupMemberInfo = 1009;
+  GetJoinedGroups = 1010;
+  GetJoinedGroupsPage = 1011;
+  GetSpecifiedGroupsInfo = 1012;
+  SearchGroups = 1013;
+  GetGroupMemberOwnerAndAdmin = 1014;
+  GetGroupMembersByJoinTimeFilter = 1015;
+  GetSpecifiedGroupMembersInfo = 1016;
+  GetGroupMembers = 1017;
+  GetGroupRequest = 1018;
+  SearchGroupMembers = 1019;
+  IsJoinGroup = 1020;
+  GetUsersInGroup = 1021;
+  InviteUserToGroup = 1022;
+  HandlerGroupRequest = 1023;
+
+  GetSpecifiedFriends = 1100;
+  AddFriend = 1101;
+  GetFriendRequests = 1102;
+  HandlerFriendRequest = 1103;
+  CheckFriend = 1104;
+  DeleteFriend = 1105;
+  GetFriends = 1106;
+  GetFriendsPage = 1107;
+  SearchFriends = 1108;
+  AddBlack = 1109;
+  DeleteBlack = 1110;
+  GetBlacks = 1111;
+  UpdateFriends = 1112;
+
+  // conversation_msg
+  GetConversationListSplit = 2000;
+  HideConversation = 2001;
+  GetAtAllTag = 2002;
+  GetOneConversation = 2003;
+  GetMultipleConversation = 2004;
+  HideAllConversations = 2005;
+  SetConversationDraft = 2006;
+  SetConversation = 2007;
+  GetTotalUnreadMsgCount = 2008;
+  GetConversationIDBySessionType = 2009;
+  FindMessageList = 2010;
+  GetAdvancedHistoryMessageList = 2011;
+  GetAdvancedHistoryMessageListReverse = 2012;
+  RevokeMessage = 2013;
+  TypingStatusUpdate = 2014;
+  MarkConversationMessageAsRead = 2015;
+  MarkAllConversationMessageAsRead = 2016;
+  DeleteMessageFromLocalStorage = 2017;
+  DeleteMessage = 2018;
+  DeleteAllMsgFromLocalAndServer = 2019;
+  DeleteAllMessageFromLocalStorage = 2020;
+  ClearConversationAndDeleteAllMsg = 2021;
+  DeleteConversationAndDeleteAllMsg = 2022;
+  InsertSingleMessageToLocalStorage = 2023;
+  InsertGroupMessageToLocalStorage = 2024;
+  SearchLocalMessages = 2025;
+  SetMessageLocalEx = 2026;
+  SearchConversation = 2027;
+  CreateTextMessage = 2028;
+  CreateAdvancedTextMessage = 2029;
+  CreateTextAtMessage = 2030;
+  CreateLocationMessage = 2031;
+  CreateCustomMessage = 2032;
+  CreateQuoteMessage = 2033;
+  CreateAdvancedQuoteMessage = 2034;
+  CreateCardMessage = 2035;
+  CreateImageMessage = 2036;
+  CreateSoundMessage = 2037;
+  CreateVideoMessage = 2038;
+  CreateFileMessage = 2039;
+  CreateMergerMessage = 2040;
+  CreateFaceMessage = 2041;
+  CreateForwardMessage = 2042;
+
+  ProcessUserCommandGetAll = 2100;
+  GetSelfUserInfo = 2101;
+  SetSelfInfo = 2102;
+  ProcessUserCommandAdd = 2103;
+  ProcessUserCommandDelete = 2104;
+  ProcessUserCommandUpdate = 2105;
+  GetUsersInfo = 2106;
+
+
+
+  // The following functions are only used for Go and JS interaction and can be ignored by other platforms.
+  JsFileOpen = 2110;
+  JsFileRead = 2111;
+  JsFileClose = 2112;
+  JsSqliteOpen = 2113;
+  JsSqliteExec = 2114;
+  JsSqliteQuery = 2115;
+  JsSqliteClose = 2116;
+}
+
+message EventOnSendMsgProgressData {
+  int32 progress = 1;
+}
+
+message EventOnUploadFileProgressData {
+  int32 progress = 1;
+}
+
+message EventOnUploadLogsProgressData {
+  int64 progress = 1;
+  int64 total = 2;
+}
+
+message EventOnConnectingData {}
+message EventOnConnectSuccessData {}
+message EventOnConnectFailedData {
+  int32 errCode = 1;
+  string errMsg = 2;
+}
+message EventOnKickedOfflineData {}
+message EventOnUserTokenExpiredData {}
+message EventOnUserTokenInvalidData {
+  string errMsg = 1;
+}
+message EventOnSyncServerStartData {
+  bool reinstalled = 1;
+}
+message EventOnSyncServerFinishData {
+  bool reinstalled = 1;
+}
+message EventOnSyncServerFailedData {
+  bool reinstalled = 1;
+}
+message EventOnSyncServerProgressData {
+  int32 progress = 1;
+}
+message EventOnNewConversationData {
+  repeated openim.sdk.shared.IMConversation conversationList = 1;
+}
+message EventOnConversationChangedData {
+  repeated openim.sdk.shared.IMConversation conversationList = 1;
+}
+message EventOnTotalUnreadMessageCountChangedData {
+  int32 totalUnreadCount = 1;
+}
+message EventOnConversationUserInputStatusChangedData {
+  string conversationID = 1;
+  string userID = 2;
+  repeated int32 platformIDs = 3;
+}
+message EventOnRecvNewMessageData {
+  openim.sdk.shared.IMMessage message = 1;
+}
+message MessageReceipt {
+  string groupID = 1;
+  string userID = 2;
+  repeated string msgIDList = 3;
+  int64 readTime = 4;
+  int32 msgFrom = 5;
+  int32 contentType = 6;
+  int32 sessionType = 7;
+}
+
+message EventOnRecvC2CReadReceiptData {
+  repeated MessageReceipt msgReceiptList = 1;
+}
+
+message EventOnNewRecvMessageRevokedData {
+  openim.sdk.shared.RevokedTips revoked = 1;
+}
+message EventOnRecvOfflineNewMessageData {
+  openim.sdk.shared.IMMessage message = 1;
+}
+message EventOnMessageDeletedData {
+  openim.sdk.shared.IMMessage message = 1;
+}
+message EventOnRecvOnlineOnlyMessageData {
+  openim.sdk.shared.IMMessage message = 1;
+}
+message EventOnMessageEditedData {
+  openim.sdk.shared.IMMessage message = 1;
+}
+
+// FriendCallback Data Types
+message EventOnFriendApplicationAddedData {
+  openim.sdk.shared.IMFriendRequest request = 1;
+}
+
+message EventOnFriendApplicationDeletedData {
+  openim.sdk.shared.IMFriendRequest request = 1;
+}
+
+message EventOnFriendApplicationAcceptedData {
+  openim.sdk.shared.IMFriendRequest request = 1;
+}
+
+message EventOnFriendApplicationRejectedData {
+  openim.sdk.shared.IMFriendRequest request = 1;
+}
+
+message EventOnFriendAddedData {
+  openim.sdk.shared.IMFriend friend = 1;
+}
+
+message EventOnFriendDeletedData {
+  openim.sdk.shared.IMFriend friend = 1;
+}
+
+message EventOnFriendInfoChangedData {
+  openim.sdk.shared.IMFriend friend = 1;
+}
+
+message EventOnBlackAddedData {
+  openim.sdk.shared.IMBlack black = 1;
+}
+
+message EventOnBlackDeletedData {
+  openim.sdk.shared.IMBlack black = 1;
+}
+
+// GroupCallback Data Types
+message EventOnJoinedGroupAddedData {
+  openim.sdk.shared.IMGroup group = 1;
+}
+
+message EventOnJoinedGroupDeletedData {
+  openim.sdk.shared.IMGroup group = 1;
+}
+
+message EventOnGroupMemberAddedData {
+  openim.sdk.shared.IMGroupMember member = 1;
+}
+
+message EventOnGroupMemberDeletedData {
+  openim.sdk.shared.IMGroupMember member = 1;
+}
+
+message EventOnGroupApplicationAddedData {
+  openim.sdk.shared.IMGroupRequest request = 1;
+}
+
+message EventOnGroupApplicationDeletedData {
+  openim.sdk.shared.IMGroupRequest request = 1;
+}
+
+message EventOnGroupInfoChangedData {
+  openim.sdk.shared.IMGroup group = 1;
+}
+
+message EventOnGroupDismissedData {
+  openim.sdk.shared.IMGroup group = 1;
+}
+
+message EventOnGroupMemberInfoChangedData {
+  openim.sdk.shared.IMGroupMember member = 1;
+}
+
+message EventOnGroupApplicationAcceptedData {
+  openim.sdk.shared.IMGroupRequest request = 1;
+}
+
+message EventOnGroupApplicationRejectedData {
+  openim.sdk.shared.IMGroupRequest request = 1;
+}
+
+// CustomBusinessCallback Data Type
+message EventOnRecvCustomBusinessMessageData {
+  string businessMessage = 1;
+}
+
+// UserCallback Data Types
+message EventOnSelfInfoUpdatedData {
+  openim.sdk.shared.IMUser user = 1;
+}
+
+message EventOnUserStatusChangedData {
+  string userID = 1;
+  repeated int32 platformIDs = 2;
+}
+
+message EventOnUserCommandAddData {
+  openim.sdk.shared.CommandInfo command = 1;
+}
+
+message EventOnUserCommandDeleteData {
+  openim.sdk.shared.CommandInfo command = 1;
+}
+
+message EventOnUserCommandUpdateData {
+  openim.sdk.shared.CommandInfo command = 1;
+}

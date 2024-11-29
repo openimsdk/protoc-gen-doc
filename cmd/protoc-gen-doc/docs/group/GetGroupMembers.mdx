@@ -1,0 +1,31 @@
+---
+sidebar_position: 19
+title: GetGroupMembers
+hide_title: true
+---
+
+# GetGroupMembers
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetGroupMembers | [GetGroupMembersReq](docs/group/index.mdx#GetGroupMembersReq) | [GetGroupMembersResp](docs/group/index.mdx#GetGroupMembersResp) | get group members |
+ 
+
+#### GetGroupMembersReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| filter | [GroupFilter](docs/group/index.mdx#GroupFilter) |  | filter |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+ 
+
+#### GetGroupMembersResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+

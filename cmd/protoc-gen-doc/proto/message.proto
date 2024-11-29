@@ -1,0 +1,221 @@
+syntax = "proto3";
+package openim.sdk.message;
+
+import "common.proto";
+import "shared.proto";
+
+option csharp_namespace = "OpenIM";
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/message";
+
+message GetAdvancedHistoryMessageListParams {
+  string conversationID = 1;
+  string startClientMsgID = 2;
+  int32 count = 3;
+}
+
+message GetAdvancedHistoryMessageListCallback {
+  repeated shared.IMMessage messageList = 1;
+  bool isEnd = 2;
+  int32 errCode = 3;
+  string errMsg = 4;
+}
+
+// ------------------------------------------------------------------------------------------------------
+message SendMessageReq {
+  shared.IMMessage message = 1;
+  string recvID = 2;
+  string groupID = 3;
+  common.OfflinePushInfo offlinePushInfo = 4;
+  bool isOnlineOnly = 5;
+}
+message SendMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message GetAdvancedHistoryMessageListReq {
+  string conversationID = 1;
+  GetAdvancedHistoryMessageListParams getAdvancedHistoryMessageListParams = 2;
+}
+message GetAdvancedHistoryMessageListResp {
+  GetAdvancedHistoryMessageListCallback getAdvancedHistoryMessageListCallback = 1;
+}
+
+message GetAdvancedHistoryMessageListReverseReq {
+  string conversationID = 1;
+  GetAdvancedHistoryMessageListParams getAdvancedHistoryMessageListParams = 2;
+}
+message GetAdvancedHistoryMessageListReverseResp {
+  GetAdvancedHistoryMessageListCallback getAdvancedHistoryMessageListCallback = 1;
+}
+
+message RevokeMessageReq {
+  string conversationID = 1;
+  string clientMsgID = 2;
+}
+message RevokeMessageResp {}
+
+message TypingStatusUpdateReq {
+  string recvID = 1;
+  string msgTip = 2;
+}
+message TypingStatusUpdateResp {}
+
+message DeleteMessageReq {
+  string conversationID = 1;
+  string clientMsgID = 2;
+}
+message DeleteMessageResp {}
+
+message DeleteAllMsgFromLocalAndServerReq {}
+message DeleteAllMsgFromLocalAndServerResp {}
+
+message DeleteAllMessageFromLocalStorageReq {}
+message DeleteAllMessageFromLocalStorageResp {}
+
+message InsertSingleMessageToLocalStorageReq {
+  shared.IMMessage msg = 1;
+  string recvID = 2;
+  string sendID = 3;
+}
+message InsertSingleMessageToLocalStorageResp {
+  shared.IMMessage msg = 1;
+}
+
+message InsertGroupMessageToLocalStorageReq {
+  shared.IMMessage msg = 1;
+  string groupID = 2;
+  string sendID = 3;
+}
+message InsertGroupMessageToLocalStorageResp {
+  shared.IMMessage msg = 1;
+}
+
+message CreateTextMessageReq {
+  string text = 1;
+}
+message CreateTextMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateAdvancedTextMessageReq {
+  string text = 1;
+  repeated shared.MessageEntity messageEntities = 2;
+}
+message CreateAdvancedTextMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateTextAtMessageReq {
+  string text = 1;
+  repeated string userIDList = 2;
+  repeated shared.AtInfo usersInfo = 3;
+  shared.IMMessage quoteMessage = 4;
+}
+message CreateTextAtMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateLocationMessageReq {
+  string description = 1;
+  double longitude = 2;
+  double latitude = 3;
+}
+message CreateLocationMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateCustomMessageReq {
+  string data = 1;
+  string extension = 2;
+  string description = 3;
+}
+message CreateCustomMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateQuoteMessageReq {
+  string text = 1;
+  shared.IMMessage quoteMessage = 2;
+}
+message CreateQuoteMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateAdvancedQuoteMessageReq {
+  string text = 1;
+  shared.IMMessage quoteMessage = 2;
+  repeated shared.MessageEntity messageEntities = 3;
+}
+message CreateAdvancedQuoteMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateCardMessageReq {
+  shared.CardElem card = 1;
+}
+message CreateCardMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateImageMessageReq {
+  string imageSourcePath = 1;
+  shared.PictureBaseInfo sourcePicture = 2;
+  shared.PictureBaseInfo bigPicture = 3;
+  shared.PictureBaseInfo snapshotPicture = 4;
+}
+message CreateImageMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateSoundMessageReq {
+  string soundPath = 1;
+  int64 duration = 2;
+  shared.SoundBaseInfo soundElem = 3;
+}
+message CreateSoundMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateVideoMessageReq {
+  string videoSourcePath = 1;
+  string videoType = 2;
+  int64 duration = 3;
+  string snapshotSourcePath = 4;
+  shared.VideoBaseInfo videoElem = 5;
+}
+message CreateVideoMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateFileMessageReq {
+  string fileSourcePath = 1;
+  string fileName = 2;
+  shared.FileBaseInfo fileElem = 3;
+}
+message CreateFileMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateMergerMessageReq {
+  repeated shared.IMMessage messages = 1;
+  string title = 2;
+  repeated string summaries = 3;
+}
+message CreateMergerMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateFaceMessageReq {
+  int32 index = 1;
+  string data = 2;
+}
+message CreateFaceMessageResp {
+  shared.IMMessage message = 1;
+}
+
+message CreateForwardMessageReq {
+  shared.IMMessage message = 1;
+}
+message CreateForwardMessageResp {
+  shared.IMMessage message = 1;
+}

@@ -1,0 +1,30 @@
+---
+sidebar_position: 7
+title: ChangeGroupMemberMute
+hide_title: true
+---
+
+# ChangeGroupMemberMute
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| ChangeGroupMemberMute | [ChangeGroupMemberMuteReq](docs/group/index.mdx#ChangeGroupMemberMuteReq) | [ChangeGroupMemberMuteResp](docs/group/index.mdx#ChangeGroupMemberMuteResp) | mute or cancel mute a group member |
+ 
+
+#### ChangeGroupMemberMuteReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to mute |
+| userID | docs/scalar/scalar.mdx |  | user id you want to mute |
+| mutedSeconds | docs/scalar/scalar.mdx |  | mute time (unit: seconds), 0 cancels the mute |
+ 
+
+#### ChangeGroupMemberMuteResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+
+

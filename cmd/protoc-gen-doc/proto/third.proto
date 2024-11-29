@@ -1,0 +1,39 @@
+syntax = "proto3";
+package openim.sdk.third;
+
+import "any.proto";
+import "common.proto";
+
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/third";
+
+message UpdateFcmTokenReq {
+  string fcmToken = 1; // fcm token
+  int64 expireTime = 2; // expire time
+}
+message UpdateFcmTokenResp {}
+
+message SetAppBadgeReq {
+  int32 appUnreadCount = 1; // app unread count
+}
+message SetAppBadgeResp {}
+
+message UploadLogsReq {
+  int32 line = 1; // upload line
+  string ex = 2; // upload extension fields
+}
+message UploadLogsResp {}
+
+message LogKv {
+  string key = 1; // key
+  google.protobuf.Any value = 2; // value
+}
+
+message LogReq {
+  common.LogLevel logLevel = 1; // log level
+  string file = 2; // log file path
+  int32 line = 3; // log line
+  string msg = 4; // log message
+  string err = 5; // log error message
+  repeated LogKv kvs = 6; // log key-value pairs
+}
+message LogResp {}

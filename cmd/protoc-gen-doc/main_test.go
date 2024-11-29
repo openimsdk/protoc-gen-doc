@@ -2,6 +2,8 @@ package main_test
 
 import (
 	"bytes"
+	"path/filepath"
+	"strings"
 	"testing"
 
 	. "github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc"
@@ -22,4 +24,13 @@ func TestHandleFlags(t *testing.T) {
 		f := ParseFlags(new(bytes.Buffer), test.args)
 		require.Equal(t, test.result, HandleFlags(f))
 	}
+}
+
+func TestName(t *testing.T) {
+	name := "group.proto"
+	t.Log(filepath.ToSlash(name))
+	t.Log(strings.TrimRight(name, filepath.Ext(name)))
+	t.Log(filepath.Ext(name))
+	t.Log(strings.TrimSuffix(name, filepath.Ext(name)))
+
 }

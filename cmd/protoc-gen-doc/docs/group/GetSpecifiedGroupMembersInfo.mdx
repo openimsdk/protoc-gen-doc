@@ -1,0 +1,30 @@
+---
+sidebar_position: 18
+title: GetSpecifiedGroupMembersInfo
+hide_title: true
+---
+
+# GetSpecifiedGroupMembersInfo
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetSpecifiedGroupMembersInfo | [GetSpecifiedGroupMembersInfoReq](docs/group/index.mdx#GetSpecifiedGroupMembersInfoReq) | [GetSpecifiedGroupMembersInfoResp](docs/group/index.mdx#GetSpecifiedGroupMembersInfoResp) | get specified group members information |
+ 
+
+#### GetSpecifiedGroupMembersInfoReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| userIDs | docs/scalar/scalar.mdx | repeated | user id you want to get |
+ 
+
+#### GetSpecifiedGroupMembersInfoResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+

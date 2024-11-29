@@ -1,0 +1,32 @@
+---
+sidebar_position: 17
+title: GetGroupMembersByJoinTimeFilter
+hide_title: true
+---
+
+# GetGroupMembersByJoinTimeFilter
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| GetGroupMembersByJoinTimeFilter | [GetGroupMembersByJoinTimeFilterReq](docs/group/index.mdx#GetGroupMembersByJoinTimeFilterReq) | [GetGroupMembersByJoinTimeFilterResp](docs/group/index.mdx#GetGroupMembersByJoinTimeFilterResp) | get group members by join time filter |
+ 
+
+#### GetGroupMembersByJoinTimeFilterReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to get |
+| joinTimeBegin | docs/scalar/scalar.mdx |  | join time start |
+| joinTimeEnd | docs/scalar/scalar.mdx |  | join time end |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+ 
+
+#### GetGroupMembersByJoinTimeFilterResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+

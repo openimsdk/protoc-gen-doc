@@ -1,0 +1,118 @@
+syntax = "proto3";
+package openim.sdk.relation;
+
+import "common.proto";
+import "shared.proto";
+
+option csharp_namespace = "OpenIM";
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/relation";
+
+message GetSpecifiedFriendsReq {
+  repeated string friendUserIDs = 1; // specified friend userid list
+  bool filterBlack = 2; // filter black, default false
+}
+message GetSpecifiedFriendsResp {
+  repeated shared.IMFriend friends = 1; // get specified friend list
+}
+
+message AddFriendReq {
+  string userID = 1; // userid
+  string reqMsg = 2; // friend request message
+  string ex = 3; // extension fields
+}
+message AddFriendResp {}
+
+message GetFriendRequestsReq {
+  // 1. user send friend request.
+  // 2. user receive friend request
+  bool send = 1;
+}
+message GetFriendRequestsResp {
+  repeated shared.IMFriendRequest requests = 1; // corresponding friend request list
+}
+
+message HandleFriendRequestReq {
+  string userID = 1; // send friend request userid
+  string handleMsg = 2; // handle message
+  common.ApprovalStatus status = 3; // handle status
+}
+message HandleFriendRequestResp {}
+
+message CheckFriendReq {
+  repeated string friendUserIDs = 1; // checkFriend userid list
+}
+
+enum CheckFriendResult {
+  NotFriend = 0; // not friend
+  IsFriend = 1; // is friend
+}
+
+message CheckFriendInfo {
+  string userID = 1; // checkFriend target userid
+  CheckFriendResult result = 2; // checkFriend result
+}
+message CheckFriendResp {
+  repeated CheckFriendInfo result = 1; // checkFriend result list
+}
+
+message DeleteFriendReq {
+  string userID = 1; // need delete friend userid
+}
+message DeleteFriendResp {}
+
+message GetFriendsReq {
+  bool filterBlack = 1; // filter black friend, default false
+}
+message GetFriendsResp {
+  repeated shared.IMFriend friends = 1; // get friend list
+}
+
+message GetFriendsPageReq {
+  bool filterBlack = 1; // filter black friend, default false
+  openim.sdk.common.RequestPagination pagination = 2; // pagination, include pagenumber and pageSize
+}
+message GetFriendsPageResp {
+  repeated shared.IMFriend friends = 1; // get friend list
+}
+
+message SearchFriendsReq {
+  string keyword = 1; // search keyword
+  bool searchUserID = 2; // search userid is condition
+  bool searchNickname = 3; // search nickname is condition
+  bool searchRemark = 4; // search remark is condition
+}
+enum Relationship {
+  Black = 0; // black
+  Friend = 1; // friend
+}
+message SearchFriendsInfo {
+  shared.IMFriend friend = 1; // search friend info
+  Relationship relationship = 2; // friend relationship
+}
+message SearchFriendsResp {
+  repeated SearchFriendsInfo friends = 1; // search friend info list
+}
+
+message AddBlackReq {
+  string userID = 1; // need add black userid
+  string ex = 2; // extension fields
+}
+message AddBlackResp {}
+
+message DeleteBlackReq {
+  string userID = 1; // need delete black userid
+}
+message DeleteBlackResp {}
+
+message GetBlacksReq {}
+message GetBlacksResp {
+  repeated shared.IMBlack blacks = 1; // black list info list
+}
+
+message UpdatesFriendsReq {
+  string userID = 1; // need update friend
+  optional bool pinned = 2; // update friend pinned status
+  optional string Remark = 3; // update friend remark
+  optional string ex = 4; // upate friend extension fields
+}
+message UpdatesFriendsResp {}

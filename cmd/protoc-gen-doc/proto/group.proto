@@ -1,0 +1,274 @@
+syntax = "proto3";
+package openim.sdk.group;
+
+import "common.proto";
+import "shared.proto";
+import "any.proto";
+
+option csharp_namespace = "OpenIM";
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/group";
+
+message Demo {
+  google.protobuf.Any value = 2; // value
+}
+
+message CreateGroupReq {
+  repeated string memberUserIDs = 1;// ordinary group member group member user id
+  repeated string adminUserIDs = 2;// administrator user id
+  shared.IMGroup groupInfo = 3;// group information
+}
+message CreateGroupResp {
+  shared.IMGroup groupInfo = 1;// group information
+}
+
+message JoinGroupReq {
+  string groupID = 1;// group id you joined
+  string reqMessage = 2;// request message
+  shared.GroupJoinSource joinSource = 3;// join source
+  string ex = 4;// extension field
+}
+message JoinGroupResp {}
+
+message QuitGroupReq {
+  string groupID = 1;// group id you quit
+}
+message QuitGroupResp {}
+
+message DismissGroupReq {
+  string groupID = 1;// group id you dismissed
+}
+message DismissGroupResp {}
+
+message ChangeGroupMuteReq {
+  string groupID = 1;// group id you want to mute
+  bool mute = 2;// mute or cancel mute
+}
+message ChangeGroupMuteResp {}
+
+message ChangeGroupMemberMuteReq {
+  string groupID = 1;// group id you want to mute
+  string userID = 2;// user id you want to mute
+  uint32 mutedSeconds = 3;// mute time (unit: seconds), 0 cancels the mute
+}
+message ChangeGroupMemberMuteResp {}
+
+message TransferGroupOwnerReq {
+  string groupID = 1;// group id you want to transfer
+  string ownerUserID = 2;// new owner user id
+}
+message TransferGroupOwnerResp {}
+
+message KickGroupMemberReq {
+  string groupID = 1;// group id you want to kick
+  repeated string kickedUserIDs = 2;// user id you want to kick
+  string reason = 3;// kick reason
+}
+message KickGroupMemberResp {}
+
+message SetGroupInfoReq {
+  string groupID = 1;// group id you want to set
+  optional string groupName = 2;// group name
+  optional string notification = 3;// group notification
+  optional string introduction = 4;// group introduction
+  optional string faceURL = 5;// group face url
+  optional string ex = 6;// extension field
+  optional int32 needVerification = 7;// whether to verify the group
+  optional int32 lookMemberInfo = 8;// whether to view the group member information
+  optional int32 applyMemberFriend = 9;// whether to allow group members to add friends
+}
+message SetGroupInfoResp {}
+
+message SetGroupMemberInfoReq {
+  string groupID = 1;// group id you want to set
+  string userID = 2;// user id you want to set
+  optional string nickname = 3;// user nickname
+  optional string faceURL = 4;// user face url
+  optional int32 roleLevel = 5;// user role level
+  optional string ex = 6;// extension field
+}
+message SetGroupMemberInfoResp {}
+
+message GetJoinedGroupsReq {}
+message GetJoinedGroupsResp {
+  repeated shared.IMGroup groups = 1;// group information
+}
+
+message GetJoinedGroupsPageReq {
+  openim.sdk.common.RequestPagination pagination = 2;// pagination
+}
+message GetJoinedGroupsPageResp {
+  repeated shared.IMGroup groups = 1;// group information
+}
+
+message GetSpecifiedGroupsInfoReq {
+  repeated string groupIDs = 1;// group id you want to get
+}
+message GetSpecifiedGroupsInfoResp {
+  repeated shared.IMGroup groups = 1;// group information
+}
+
+message SearchGroupsReq {
+  string keyword = 1;// search keyword
+  bool searchGroupID = 2;// search group id
+  bool searchGroupName = 3;// search group name
+}
+message SearchGroupsResp {
+  repeated shared.IMGroup groups = 1;// group information
+}
+
+message GetGroupMemberOwnerAndAdminReq {
+  string groupID = 1;// group id you want to get
+}
+message GetGroupMemberOwnerAndAdminResp {
+  repeated shared.IMGroupMember members = 1;// group member information
+}
+
+message GetGroupMembersByJoinTimeFilterReq {
+  string groupID = 1;// group id you want to get
+  int64 joinTimeBegin = 2;// join time start
+  int64 joinTimeEnd = 3;// join time end
+  openim.sdk.common.RequestPagination pagination = 4;// pagination
+}
+message GetGroupMembersByJoinTimeFilterResp {
+  repeated shared.IMGroupMember members = 1;// group member information
+}
+
+message GetSpecifiedGroupMembersInfoReq {
+  string groupID = 1;// group id you want to get
+  repeated string userIDs = 2;// user id you want to get
+}
+message GetSpecifiedGroupMembersInfoResp {
+  repeated shared.IMGroupMember members = 1;// group member information
+}
+
+enum GroupFilter {
+  All = 0;// all users
+  Owner = 1;// owner users
+  Admin = 2;// admin users
+  OrdinaryUsers = 3;// ordinary users
+  AdminAndOrdinaryUsers = 4;// admin and ordinary users
+  OwnerAndAdmin = 5;// owner and admin users
+}
+message GetGroupMembersReq {
+  string groupID = 1;// group id you want to get
+  GroupFilter filter = 2;// filter
+  openim.sdk.common.RequestPagination pagination = 4;// pagination
+}
+message GetGroupMembersResp {
+  repeated shared.IMGroupMember members = 1;// group member information
+}
+
+message GetGroupRequestReq {
+  bool send = 1;// is it the request i sent
+}
+message GetGroupRequestResp {
+  repeated shared.IMGroupRequest requests = 1;// group request information
+}
+
+message SearchGroupMembersReq {
+  string groupID = 1;// group id you want to search
+  string Keyword = 2;// search keyword
+  bool searchUserID = 3;// search user id
+  bool searchMemberNickname = 4;// search user nickname
+  openim.sdk.common.RequestPagination pagination = 5;// pagination
+}
+message SearchGroupMembersResp {
+  repeated shared.IMGroupMember members = 1;// group member information
+}
+
+message IsJoinGroupReq {
+  string groupID = 1;// group id you want to check
+  string userID = 2;// user id you want to check
+}
+message IsJoinGroupResp {
+  bool joined = 1;// whether to join the group
+}
+
+message GetUsersInGroupReq {
+  string groupID = 1;// group id you want to get
+  repeated string userIDs = 2;// user id you want to get
+}
+message GetUsersInGroupResp {
+  repeated string userIDs = 1;// user id in the group
+}
+
+message InviteUserToGroupReq {
+  string groupID = 1;// group id you want to invite
+  repeated string userIDs = 2;// user id you want to invite
+  string reason = 3;// invite reason
+}
+message InviteUserToGroupResp {}
+
+message HandlerGroupRequestReq {
+  /**
+   * group id you want to handle1<br>
+   * group id you want to handle2<br>
+   * group id you want to handle3<br>
+   * group id you want to handle4<br>
+   */
+  string groupID = 1;
+  // user id you want to handle
+  string fromUserID = 2;
+  // request message
+  string handledMsg = 3;
+  // approval status
+  openim.sdk.common.ApprovalStatus status = 4;
+}
+message HandlerGroupRequestResp {}
+
+
+service group {
+  /**
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  * This is a leading comment for a message
+  */
+  rpc CreateGroup(CreateGroupReq) returns (CreateGroupResp);
+  // join a group
+  rpc JoinGroup(JoinGroupReq) returns (JoinGroupResp);
+  // quit a group
+  rpc QuitGroup(QuitGroupReq) returns (QuitGroupResp);
+  // dismiss a group
+  rpc DismissGroup(DismissGroupReq) returns (DismissGroupResp);
+  // mute or cancel mute a group
+  rpc ChangeGroupMute(ChangeGroupMuteReq) returns (ChangeGroupMuteResp);
+  // mute or cancel mute a group member
+  rpc ChangeGroupMemberMute(ChangeGroupMemberMuteReq) returns (ChangeGroupMemberMuteResp);
+  // transfer group owner
+  rpc TransferGroupOwner(TransferGroupOwnerReq) returns (TransferGroupOwnerResp);
+  // kick a group member
+  rpc KickGroupMember(KickGroupMemberReq) returns (KickGroupMemberResp);
+  // set group information
+  rpc SetGroupInfo(SetGroupInfoReq) returns (SetGroupInfoResp);
+  // set group member information
+  rpc SetGroupMemberInfo(SetGroupMemberInfoReq) returns (SetGroupMemberInfoResp);
+  // get joined groups
+  rpc GetJoinedGroups(GetJoinedGroupsReq) returns (GetJoinedGroupsResp);
+  // get joined groups by page
+  rpc GetJoinedGroupsPage(GetJoinedGroupsPageReq) returns (GetJoinedGroupsPageResp);
+  // get specified groups information
+  rpc GetSpecifiedGroupsInfo(GetSpecifiedGroupsInfoReq) returns (GetSpecifiedGroupsInfoResp);
+  // search groups
+  rpc SearchGroups(SearchGroupsReq) returns (SearchGroupsResp);
+  // get group member owner and admin
+  rpc GetGroupMemberOwnerAndAdmin(GetGroupMemberOwnerAndAdminReq) returns (GetGroupMemberOwnerAndAdminResp);
+  // get group members by join time filter
+  rpc GetGroupMembersByJoinTimeFilter(GetGroupMembersByJoinTimeFilterReq) returns (GetGroupMembersByJoinTimeFilterResp);
+  // get specified group members information
+  rpc GetSpecifiedGroupMembersInfo(GetSpecifiedGroupMembersInfoReq) returns (GetSpecifiedGroupMembersInfoResp);
+  // get group members
+  rpc GetGroupMembers(GetGroupMembersReq) returns (GetGroupMembersResp);
+  // get group request
+  rpc GetGroupRequest(GetGroupRequestReq) returns (GetGroupRequestResp);
+  // get group request
+  rpc SearchGroupMembers(SearchGroupMembersReq) returns (SearchGroupMembersResp);
+  // is join group
+  rpc IsJoinGroup(IsJoinGroupReq) returns (IsJoinGroupResp);
+  // get users in group
+  rpc GetUsersInGroup(GetUsersInGroupReq) returns (GetUsersInGroupResp);
+  // invite user to group
+  rpc InviteUserToGroup(InviteUserToGroupReq) returns (InviteUserToGroupResp);
+  // handler group request
+  rpc HandlerGroupRequest(HandlerGroupRequestReq) returns (HandlerGroupRequestResp);
+}

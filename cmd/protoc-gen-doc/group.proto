@@ -83,7 +83,7 @@ message GetUsersInGroupResp {
 message InviteUserToGroupReq {
   // group id you want to invite
   string groupID = 1;
-  // user id you want to invite
+  // @group_member_user_id
   repeated string userIDs = 2;
   string reason = 3;// invite reason
 }

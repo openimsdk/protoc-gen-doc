@@ -1,0 +1,33 @@
+---
+sidebar_position: 21
+title: SearchGroupMembers
+hide_title: true
+---
+
+# SearchGroupMembers
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| SearchGroupMembers | [SearchGroupMembersReq](docs/group/index.mdx#SearchGroupMembersReq) | [SearchGroupMembersResp](docs/group/index.mdx#SearchGroupMembersResp) | get group request |
+ 
+
+#### SearchGroupMembersReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groupID | docs/scalar/scalar.mdx |  | group id you want to search |
+| Keyword | docs/scalar/scalar.mdx |  | search keyword |
+| searchUserID | docs/scalar/scalar.mdx |  | search user id |
+| searchMemberNickname | docs/scalar/scalar.mdx |  | search user nickname |
+| pagination | [RequestPagination](docs/common/index.mdx#RequestPagination) |  | pagination |
+ 
+
+#### SearchGroupMembersResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [IMGroupMember](docs/shared/index.mdx#IMGroupMember) | repeated | group member information |
+
+

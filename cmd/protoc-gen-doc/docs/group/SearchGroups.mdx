@@ -1,0 +1,31 @@
+---
+sidebar_position: 15
+title: SearchGroups
+hide_title: true
+---
+
+# SearchGroups
+
+### Feature Introduction
+
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------- |
+| SearchGroups | [SearchGroupsReq](docs/group/index.mdx#SearchGroupsReq) | [SearchGroupsResp](docs/group/index.mdx#SearchGroupsResp) | search groups |
+ 
+
+#### SearchGroupsReq
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| keyword | docs/scalar/scalar.mdx |  | search keyword |
+| searchGroupID | docs/scalar/scalar.mdx |  | search group id |
+| searchGroupName | docs/scalar/scalar.mdx |  | search group name |
+ 
+
+#### SearchGroupsResp
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| groups | [IMGroup](docs/shared/index.mdx#IMGroup) | repeated | group information |
+
+

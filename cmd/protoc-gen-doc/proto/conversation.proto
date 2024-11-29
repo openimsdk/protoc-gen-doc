@@ -1,0 +1,197 @@
+syntax = "proto3";
+package openim.sdk.conversation;
+
+import "common.proto";
+import "shared.proto";
+
+option csharp_namespace = "OpenIM";
+option go_package = "github.com/openimsdk/openim-sdk-core/v3/proto/go/conversation";
+
+message ConversationArgs {
+  string conversationID = 1;
+  repeated string clientMsgIDList = 2;
+}
+
+message FindMessageListCallback {
+  int32 totalCount = 1;
+  repeated SearchByConversationResult findResultItems = 2;
+}
+
+message SearchLocalMessagesParams {
+  string conversationID = 1;
+  repeated string keywordList = 2;
+  int32 keywordListMatchType = 3;
+  repeated string senderUserIDList = 4;
+  repeated int32 messageTypeList = 5;
+  int64 searchTimePosition = 6;
+  int64 searchTimePeriod = 7;
+  int32 pageIndex = 8;
+  int32 count = 9;
+}
+
+message SearchLocalMessagesCallback {
+  int32 totalCount = 1;
+  repeated SearchByConversationResult searchResultItems = 2;
+}
+
+message SearchByConversationResult {
+  string conversationID = 1;
+  int32 conversationType = 2;
+  string showName = 3;
+  string faceURL = 4;
+  int64 latestMsgSendTime = 5;
+  int32 messageCount = 6;
+  repeated shared.IMMessage messageList = 7;
+}
+
+// -----------------------------------------------------------------------------------------------------------------
+message GetAllConversationListReq {}
+message GetAllConversationListResp {
+  repeated shared.IMConversation conversationList = 1;
+}
+
+message GetConversationListSplitReq {
+  int32 offset = 1;
+  int32 count = 2;
+}
+message GetConversationListSplitResp {
+  repeated shared.IMConversation conversationList = 1;
+}
+
+message HideConversationReq {
+  string conversationID = 1;
+}
+message HideConversationResp {}
+
+message GetAtAllTagReq {}
+message GetAtAllTagResp {
+  string tag = 1;
+}
+
+message GetOneConversationReq {
+  int32 sessionType = 1;
+  string sourceID = 2;
+}
+message GetOneConversationResp {
+  shared.IMConversation conversation = 1;
+}
+
+message GetMultipleConversationReq {
+  repeated string conversationIDList = 1;
+}
+message GetMultipleConversationResp {
+  repeated shared.IMConversation conversationList = 1;
+}
+
+message HideAllConversationsReq {}
+message HideAllConversationsResp {}
+
+message SetConversationDraftReq {
+  string conversationID = 1;
+  string draftText = 2;
+}
+message SetConversationDraftResp {}
+
+message SetConversationReq {
+  string conversationID = 1;
+  optional common.ConvRecvMsgOpt recvMsgOpt = 2;
+  optional common.ConvGroupAtType groupAtType = 3;
+  optional bool isPinned = 4;
+  optional bool isPrivateChat = 5;
+  optional int32 burnDuration = 6;
+  optional string ex = 7;
+  optional int64 msgDestructTime = 8;
+  optional bool isMsgDestruct = 9;
+}
+message SetConversationResp {}
+
+message GetTotalUnreadMsgCountReq {}
+message GetTotalUnreadMsgCountResp {
+  int32 totalUnreadCount = 1;
+}
+
+message GetConversationIDBySessionTypeReq {
+  string sourceID = 1;
+  int32 sessionType = 2;
+}
+message GetConversationIDBySessionTypeResp {
+  string conversationID = 1;
+}
+
+message FindMessageListReq {
+  repeated ConversationArgs conversationsArgs = 1;
+}
+message FindMessageListResp {
+  repeated SearchByConversationResult findResultItems = 1;
+  int32 totalCount = 2;
+}
+
+message MarkConversationMessageAsReadReq {
+  string conversationID = 1;
+}
+message MarkConversationMessageAsReadResp {}
+
+message MarkAllConversationMessageAsReadReq {}
+message MarkAllConversationMessageAsReadResp {}
+
+message DeleteMessageFromLocalStorageReq {
+  string conversationID = 1;
+  string clientMsgID = 2;
+}
+message DeleteMessageFromLocalStorageResp {}
+
+message ClearConversationAndDeleteAllMsgReq {
+  string conversationID = 1;
+}
+message ClearConversationAndDeleteAllMsgResp {}
+
+message DeleteConversationAndDeleteAllMsgReq {
+  string conversationID = 1;
+}
+message DeleteConversationAndDeleteAllMsgResp {}
+
+message SearchLocalMessagesReq {
+  SearchLocalMessagesParams searchParam = 1;
+}
+message SearchLocalMessagesResp {
+  SearchLocalMessagesCallback searchResult = 1;
+}
+
+message SetMessageLocalExReq {
+  string conversationID = 1;
+  string clientMsgID = 2;
+  string localEx = 3;
+}
+message SetMessageLocalExResp {
+  bool success = 1;
+}
+
+message SearchConversationReq {
+  string searchParam = 1;
+}
+message SearchConversationResp {
+  repeated shared.IMConversation conversationList = 1;
+}
+
+// service ConversationService {
+//   rpc GetAllConversationList(GetAllConversationListReq) returns (GetAllConversationListResp) {}
+//   rpc GetConversationListSplit(GetConversationListSplitReq) returns (GetConversationListSplitResp) {}
+//   rpc HideConversation(HideConversationReq) returns (HideConversationResp) {}
+//   rpc GetAtAllTag(GetAtAllTagReq) returns (GetAtAllTagResp) {}
+//   rpc GetOneConversation(GetOneConversationReq) returns (GetOneConversationResp) {}
+//   rpc GetMultipleConversation(GetMultipleConversationReq) returns (GetMultipleConversationResp) {}
+//   rpc HideAllConversations(HideAllConversationsReq) returns (HideAllConversationsResp) {}
+//   rpc SetConversationDraft(SetConversationDraftReq) returns (SetConversationDraftResp) {}
+//   rpc SetConversation(SetConversationReq) returns (SetConversationResp) {}
+//   rpc GetTotalUnreadMsgCount(GetTotalUnreadMsgCountReq) returns (GetTotalUnreadMsgCountResp) {}
+//   rpc GetConversationIDBySessionType(GetConversationIDBySessionTypeReq) returns (GetConversationIDBySessionTypeResp) {}
+//   rpc FindMessageList(FindMessageListReq) returns (FindMessageListResp) {}
+//   rpc MarkConversationMessageAsRead(MarkConversationMessageAsReadReq) returns (MarkConversationMessageAsReadResp) {}
+//   rpc MarkAllConversationMessageAsRead(MarkAllConversationMessageAsReadReq) returns (MarkAllConversationMessageAsReadResp) {}
+//   rpc DeleteMessageFromLocalStorage(DeleteMessageFromLocalStorageReq) returns (DeleteMessageFromLocalStorageResp) {}
+//   rpc ClearConversationAndDeleteAllMsg(ClearConversationAndDeleteAllMsgReq) returns (ClearConversationAndDeleteAllMsgResp) {}
+//   rpc DeleteConversationAndDeleteAllMsg(DeleteConversationAndDeleteAllMsgReq) returns (DeleteConversationAndDeleteAllMsgResp) {}
+//   rpc SearchLocalMessages(SearchLocalMessagesReq) returns (SearchLocalMessagesResp) {}
+//   rpc SetMessageLocalEx(SetMessageLocalExReq) returns (SetMessageLocalExResp) {}
+//   rpc SearchConversation(SearchConversationReq) returns (SearchConversationResp) {}
+// }
