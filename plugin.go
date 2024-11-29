@@ -151,9 +151,9 @@ func typeLink(name string) string {
 		return fmt.Sprintf("[%s](%s)", lastName, linkpath(arr[len(arr)-2], "index", lastName))
 	}
 	if len(arr) > 0 && arr[0] == "google" {
-		return linkpath("scalar", "any", "")
+		return fmt.Sprintf("[%s](%s)", arr[len(arr)-1], linkpath("google", strings.ToLower(arr[len(arr)-1]), ""))
 	}
-	return linkpath("scalar", "scalar", "")
+	return fmt.Sprintf("[%s](%s)", arr[len(arr)-1], linkpath("scalar", "scalar", ""))
 }
 
 func methodLink(mode, name string) string {
