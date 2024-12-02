@@ -66,7 +66,8 @@ message SetGroupMemberInfoResp {}
 
 message IsJoinGroupReq {
   string groupID = 1;// group id you want to check
-  string userID = 2;// user id you want to check
+  // @group_user_id
+  string userID = 2;
 }
 message IsJoinGroupResp {
   bool joined = 1;// whether to join the group
@@ -83,7 +84,7 @@ message GetUsersInGroupResp {
 message InviteUserToGroupReq {
   // group id you want to invite
   string groupID = 1;
-  // @group_member_user_id
+  // @opt user id you want to invite
   repeated string userIDs = 2;
   string reason = 3;// invite reason
 }
@@ -91,10 +92,10 @@ message InviteUserToGroupResp {}
 
 service Group {
   /**
-  * 1This is a leading comment for a message
-  * 2This is a leading comment for a message
-  * 3This is a leading comment for a message
-  * 4This is a leading comment for a message
+  * 第一行是方法的简要描述(只能一行)
+  * 第二行开始是详细描述，支持换行
+  * 第二行开始是详细描述，支持换行
+  * 第二行开始是详细描述，支持换行
   */
   rpc QuitGroup(QuitGroupReq) returns (QuitGroupResp);
   // dismiss a group

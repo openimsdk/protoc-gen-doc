@@ -13,7 +13,7 @@ message Demo {
 }
 
 message CreateGroupReq {
-  // @kx ordinary group member group member user id
+  // @opt ordinary group member group member user id
   repeated string memberUserIDs = 1;
   repeated string adminUserIDs = 2;// administrator user id
   shared.IMGroup groupInfo = 3;// group information
@@ -23,7 +23,8 @@ message CreateGroupResp {
 }
 
 message JoinGroupReq {
-  string groupID = 1;// group id you joined
+  // @group_id
+  string groupID = 1;
   string reqMessage = 2;// request message
   shared.GroupJoinSource joinSource = 3;// join source
   string ex = 4;// extension field

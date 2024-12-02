@@ -2,8 +2,10 @@ package gendoc
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"log"
+	"os"
 	"path"
 	"path/filepath"
 	"regexp"
@@ -27,6 +29,8 @@ type PluginOptions struct {
 // SupportedFeatures describes a flag setting for supported features.
 var SupportedFeatures = uint64(plugin_go.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL)
 
+var vars = make(map[string]string)
+
 // Plugin describes a protoc code generate plugin. It's an implementation of Plugin from github.com/pseudomuto/protokit
 type Plugin struct{}
 
@@ -40,19 +44,24 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 
 	result := excludeUnwantedProtos(protokit.ParseCodeGenRequest(r), options.ExcludePatterns)
 
-	customTemplate := ""
-
-	if options.TemplateFile != "" {
-		data, err := ioutil.ReadFile(options.TemplateFile)
-		if err != nil {
-			return nil, err
-		}
-
-		customTemplate = string(data)
-	}
-	_ = customTemplate
+	//customTemplate := ""
+	//
+	//if options.TemplateFile != "" {
+	//	data, err := ioutil.ReadFile(options.TemplateFile)
+	//	if err != nil {
+	//		return nil, err
+	//	}
+	//
+	//	customTemplate = string(data)
+	//}
 	resp := new(plugin_go.CodeGeneratorResponse)
 	fdsGroup := groupProtosByDirectory(result, options.SourceRelative)
+	for dir := range fdsGroup {
+		if err := readVar(dir, vars); err != nil {
+			return nil, err
+		}
+	}
+	log.Println("vars:", vars)
 	var buf bytes.Buffer
 	for dir, fds := range fdsGroup {
 		template := NewTemplate(fds)
@@ -128,6 +137,33 @@ func (p *Plugin) Generate(r *plugin_go.CodeGeneratorRequest) (*plugin_go.CodeGen
 	return resp, nil
 }
 
+func readVar(dir string, vars map[string]string) error {
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if info.IsDir() || info.Name() != "var.json" {
+			return nil
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		var temp map[string]string
+		if err = json.Unmarshal(data, &temp); err != nil {
+			return err
+		}
+		for k, v := range temp {
+			vars[k] = v
+		}
+		return nil
+	})
+	if err != nil && (!os.IsNotExist(err)) {
+		return err
+	}
+	return nil
+}
+
 func filename(name string) string {
 	return name + ".mdx"
 }
@@ -194,12 +230,22 @@ func writeMessage(buf *bytes.Buffer, msg *Message) {
 			}
 		}
 	}
+	replaceVar := func(str string) string {
+		str = strings.TrimSpace(str)
+		if !strings.HasPrefix(str, "@") {
+			return str
+		}
+		val, ok := vars[strings.TrimPrefix(str, "@")]
+		if !ok {
+			panic(fmt.Sprintf("var `%s` not found", str))
+		}
+		return val
+	}
 	if hasRequired {
 		buf.WriteString("| Field | Type | Label | Required | Description |\n")
 		buf.WriteString("| ----- | ---- | ----- | -------- | ----------- |\n")
 		for _, field := range msg.Fields {
 			text := strings.TrimSpace(string(field.Description))
-			text = strings.ReplaceAll(text, "\n", "<br>")
 			required := "Yes"
 			if strings.HasPrefix(text, "@opt") {
 				text = strings.TrimPrefix(text, "@opt")
@@ -208,13 +254,17 @@ func writeMessage(buf *bytes.Buffer, msg *Message) {
 				//} else if field.Label == "optional" {
 				//	required = "No"
 			}
+			text = replaceVar(text)
+			text = strings.ReplaceAll(text, "\n", "<br>")
 			buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, required, text))
 		}
 	} else {
 		buf.WriteString("| Field | Type | Label | Description |\n")
 		buf.WriteString("| ----- | ---- | ----- | ----------- |\n")
 		for _, field := range msg.Fields {
-			buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, strings.ReplaceAll(string(field.Description), "\n", "<br>")))
+			text := replaceVar(string(field.Description))
+			text = strings.ReplaceAll(string(field.Description), "\n", "<br>")
+			buf.WriteString(fmt.Sprintf("| %s | %s | %s | %s |\n", field.Name, typeLink(field.FullType), field.Label, text))
 		}
 	}
 }
